@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Linux文件目录及常用命令 |  Yu han の BLog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Yu han の BLog" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Linux 文件目录及常用(简单)命令" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linux文件目录及常用命令
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/Linux%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8(%E7%AE%80%E5%8D%95)%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.034Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux-%E5%85%A5%E9%97%A8/">Linux 入门</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.4k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="1-1文件和目录简介"><a href="#1-1文件和目录简介" class="headerlink" title="1.1文件和目录简介"></a>1.1文件和目录简介</h3><p><strong>Linux和windows 文件存储方式不同，Windows有多个根目录（/c/d/e/f）linux 只有一个根目录<br>Linux 根目录： 文件–》 其他–》计算机</strong></p>
+<p><strong>根目录：</strong></p>
+<ol>
+<li>/bin 二进制文件</li>
+<li>/home 用户目录</li>
+<li>/home/xxx(user) 用户家目录</li>
+<li>/etc 系统配置文件目录</li>
+<li>/root 超级管理员的目录</li>
+</ol>
+<h3 id="1-2-Linux终端命令格式"><a href="#1-2-Linux终端命令格式" class="headerlink" title="1.2 Linux终端命令格式"></a>1.2 Linux终端命令格式</h3><p><strong>终端</strong>：软件控制台，在终端输入命令可快速操作计算机<br>终端命令格式： <em>命令 [-选项] [-参数]</em></p>
+<h5 id="查看帮助的两种方式"><a href="#查看帮助的两种方式" class="headerlink" title="查看帮助的两种方式"></a>查看帮助的两种方式</h5><p><strong>（1）.man 命令</strong><br>  【enter】 换行<br>  【空格】 翻页<br>      f - 下一页<br>    b - 上一页<br>    q -  退出<br><strong>（2）.help</strong><br>    命令 –help</p>
+<h3 id="1-3-常用命令—-显示文件及目录"><a href="#1-3-常用命令—-显示文件及目录" class="headerlink" title="1.3 常用命令— 显示文件及目录"></a>1.3 常用命令— 显示文件及目录</h3><p>*pwd 显示当前所在的路径<br>*tree 以树状列表方式显示文件夹内容<br>(1)tree 当前目录<br>(2)tree aaa[指定目录]<br>*ls 一列表方式显示 文件夹内容<br> ls -a 显示所有文件（包含隐藏文件）</p>
+<h5 id="1-3-1显示文件详细信息"><a href="#1-3-1显示文件详细信息" class="headerlink" title="1.3.1显示文件详细信息"></a>1.3.1显示文件详细信息</h5><p><strong>ls两个选项</strong><br>-l 以详细信息的方式显示列表内容<br>-h 以更加人性化的方式显示文件夹内容（文件大小 k MB..）</p>
+<h5 id="1-3-2-切换目录"><a href="#1-3-2-切换目录" class="headerlink" title="1.3.2 切换目录"></a>1.3.2 切换目录</h5><p>（1）.在图形界面进入该文件目录，鼠标右击显示复选框，选择在终端打开即可进入该目录下<br><img src="https://img-blog.csdnimg.cn/20190719205857200.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（2）cd 命令，切换工作目录<br>    用法：<br>    cd 路径   切换到指定路径<br>    cd 回到家目录<br>    cd ~ 回到家目录<br>    cd . 当前目录<br>    cd .. 上级目录<br>    cd - 上次目录</p>
+<h3 id="1-4-常用命令—创建文件和文件夹"><a href="#1-4-常用命令—创建文件和文件夹" class="headerlink" title="1.4 常用命令—创建文件和文件夹"></a>1.4 常用命令—创建文件和文件夹</h3><ul>
+<li>mkdir 创建目录 ，递归创建 添加 -p 选项</li>
+<li>touch 创建一个文件：touch 文件名 </li>
+<li>touch 创建多个文件：touch  filename1 filename2</li>
+<li>gedit  用来打开一个文件并进行编辑<br>（1）.打开一个文件后，终端进入等待状态<br>（2）.可以同时编辑多个文件 gedit  filename1 filename2</li>
+</ul>
+<h5 id="1-4-1-常用命令-删除文件和目录"><a href="#1-4-1-常用命令-删除文件和目录" class="headerlink" title="1.4.1 常用命令- 删除文件和目录"></a>1.4.1 常用命令- 删除文件和目录</h5><ul>
+<li>rm -&gt;remove<br>删除文件或者目录<br>删除文件： rm filename</li>
+</ul>
+<p>此命令提供两种选项<br> -i 以交互模式删除 （提示是否确认删除）<br> -f 强制删除不提示<br>删除文件夹 rm -r filename 递归删除目录中的内容 </p>
+<h5 id="1-4-2-常用命令-文件拷贝"><a href="#1-4-2-常用命令-文件拷贝" class="headerlink" title="1.4.2 常用命令-文件拷贝"></a>1.4.2 常用命令-文件拷贝</h5><p>cp -&gt;copy<br>用来拷贝文件或目录<br>拷贝文件 ： cp 原路径 目标路径<br>如： cp ./Javascript/demo.txt  ./java/demo2.txt<br>该命令提供如下选项<br>    -i 交互模式拷贝<br>    -f 强制覆盖不提示<br>    -v 显示拷贝过程<br>    -a 拷贝原有属性</p>
+<p><strong>·</strong>拷贝目录 cp -r 源路径 目标路径</p>
+<h5 id="1-4-3-常用命令-移动"><a href="#1-4-3-常用命令-移动" class="headerlink" title="1.4.3 常用命令-移动"></a>1.4.3 常用命令-移动</h5><p>mv -&gt;move<br><strong>1.移动文件或文件夹</strong><br>  mv  源路径 目标路径<br>  选项可选如下：<br>-i 交互方式进行文件移动<br>-f 强制覆盖不提示<br>-v 显示移动过程<br>注意：移动文件夹不需要加 -r 选项<br><strong>2.重命名文件及文件夹</strong><br>重命名： 在一个目录下移动才能进行重命名<br>mv 旧文件名 新文件名</p>
+<h3 id="1-5-常用命令-其他"><a href="#1-5-常用命令-其他" class="headerlink" title="1.5 常用命令-其他"></a>1.5 常用命令-其他</h3><p><strong>1.    clear</strong><br>清除当前终端显示内容  如果你想秀操作的话 使用快捷键   【ctrl】+【l】<br><strong>2.    【Tab】</strong><br>自动补全文件夹或者文件名<br><strong><em>注意：</em></strong>当在当前文件夹下有相同开头文件名时，补全功能无法实现，此时按两下Tab 系统显示当前文件夹下的所有以所写命令开始的文件名<br><strong>3.  which</strong><br> 查看某个命令所在的位置<br>如： which gedit<br><strong>4. 终止指令的执行</strong><br>【ctrl】+【c】<br><strong>5.终端字体的大小调整</strong><br>放大： ctrl +shift+=<br>缩小： ctrl+ - </p>
+<h3 id="1-6-常用命令-日历日期"><a href="#1-6-常用命令-日历日期" class="headerlink" title="1.6 常用命令-日历日期"></a>1.6 常用命令-日历日期</h3><h5 id="cal-查看日历"><a href="#cal-查看日历" class="headerlink" title="cal 查看日历"></a>cal 查看日历</h5><p>cal  -3 查看上月，当前月，下一月<br>cal  -y 显示当年的日历<br>cal  -j 以一年中第—天的形式显示日历<br>cal  + 具体年份 显示所写年份日历</p>
+<h5 id="date-查看日期时间"><a href="#date-查看日期时间" class="headerlink" title="date 查看日期时间"></a>date 查看日期时间</h5><p>date  显示当前的年月日时分秒</p>
+<h5 id="格式化显示"><a href="#格式化显示" class="headerlink" title="格式化显示"></a>格式化显示</h5><p>date ”+%Y”  输出年份<br>date ”+%m”  输出月份<br>date ”+%d”    输出天<br>date ”+%H”    输出时<br>date ”+%M”    输出分<br>date ”+%S”    输出秒<br>date ”+%F”    格式化输出 如2019-7-19<br>date ”+%T”   格式化输出 如19：56：21</p>
+<h3 id="1-7-常用命令-查看历史指令"><a href="#1-7-常用命令-查看历史指令" class="headerlink" title="1.7 常用命令-查看历史指令"></a>1.7 常用命令-查看历史指令</h3><ol>
+<li><p>history  查看当前用户服务器所有历史指令</p>
+</li>
+<li><p>history  数量 显示一定数量的历史指令</p>
+</li>
+<li><p>！历史指令编号 执行该条历史指令</p>
+<p><strong><em>历史指令保存在~/.bash_history 文件中</em></strong></p>
+</li>
+</ol>
+<h3 id="1-8常用命令-文件查看（cat-more）"><a href="#1-8常用命令-文件查看（cat-more）" class="headerlink" title="1.8常用命令-文件查看（cat ,more）"></a>1.8常用命令-文件查看（cat ,more）</h3><h5 id="·cat-查看文件或连接文件"><a href="#·cat-查看文件或连接文件" class="headerlink" title="·cat 查看文件或连接文件"></a><strong>·cat 查看文件或连接文件</strong></h5><p><strong>| 1.查看文件</strong><br>cat 文件名<br>选项：<br>-n 查看文件时，对每一行进行编号<br>-b 非空行进行编号<br>-s 连续两行以上的空行，只显示一行<br><strong>| 2.连接文件，把两个文件合并到 一起进行输出</strong><br>cat filename1 filename2</p>
+<h5 id="·more-用来分屏查看文件内容"><a href="#·more-用来分屏查看文件内容" class="headerlink" title="·more 用来分屏查看文件内容"></a><strong>·more 用来分屏查看文件内容</strong></h5><p><strong>选项：</strong><br>+num 从第num行开始查看文件 如：more ./demo.txt +20<br>-p 先清屏，再查看文件<br>-s 连续两行以上的空行，只显示一行<br><strong>快捷键：</strong><br>【enter】查看下一行<br>【空格】查看下一屏<br>Ctrl + f 查看下一屏<br>Ctrl + b 查看上一屏<br>q 退出</p>
+<h3 id="1-9-常用命令-数据流-、管道"><a href="#1-9-常用命令-数据流-、管道" class="headerlink" title="1.9 常用命令-数据流 、管道"></a>1.9 常用命令-数据流 、管道</h3><p><img src="https://img-blog.csdnimg.cn/20190721130542847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>·数据流</strong></p>
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+<li>标准的错误输入输出流</li>
+</ul>
+<p><strong>·重定向：改变数据流向（一般定向到文件中）</strong></p>
+<ol>
+<li><blockquote>
+<p>重定向</p>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<p>以追加的方式重定向</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<p><strong>·管道</strong></p>
+<ul>
+<li></li>
+<li>| 指令1 |指令2     ps:指令1必须要有输出</li>
+</ul>
+<p><strong>如： touch demo.txt |more 因为指令1无输出，所以该管道使用错误</strong></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Jiao-xxm/Jiao-xxm.github.io/2020/03/04/Linux%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8(%E7%AE%80%E5%8D%95)%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/04/Maven%E5%88%9B%E5%BB%BAwebapp%E9%AA%A8%E6%9E%B6%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8@WebServlet%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Maven 创建webapp骨架无法使用@WebServlet注解配置
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/04/linux%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Linux常用指令（续）</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mQrBILG1YcJJj682UpnfYKM4-gzGzoHsz',
+        app_key: 'yk7WKXqjykaMxibww9C5hipn',
+        path: window.location.pathname,
+        notify: 'true',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        卻水
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Yu han の BLog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://blog.csdn.net/qq_41753944" target="_blank" rel="noopener">CSDN</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['面朝大海，春暖花开','愿你一生努力，一生被爱','如果代碼能給你幸福，我願爲你天荒地老！'],
+    startDelay: 0,
+    typeSpeed: 230,
+    loop: true,
+    backSpeed: 150,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

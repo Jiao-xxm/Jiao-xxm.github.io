@@ -71,7 +71,7 @@
     
     
     
-    <article id="post-hello-world" class="article article-type-post" itemscope
+    <article id="post-递归经典例题—java实现" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -79,8 +79,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/03/04/hello-world/"
-    >Hello World</a
+  <a class="article-title" href="/2020/03/04/%E9%80%92%E5%BD%92%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E2%80%94java%E5%AE%9E%E7%8E%B0/"
+    >递归经典例题（赶鸭子）</a
   >
 </h2>
   
@@ -90,10 +90,14 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/04/hello-world/" class="article-date">
-  <time datetime="2020-03-04T05:39:43.798Z" itemprop="datePublished">2020-03-04</time>
+      <a href="/2020/03/04/%E9%80%92%E5%BD%92%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E2%80%94java%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.177Z" itemprop="datePublished">2020-03-04</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+  </div>
+
       
       
       
@@ -110,19 +114,100 @@
       
 
       
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+      <h3 id="一．-题目分析"><a href="#一．-题目分析" class="headerlink" title="一．    题目分析"></a>一．    题目分析</h3><p><strong>①一个人赶着鸭子去每个村庄卖，每经过一个村子卖去所赶鸭子的一半又一只。这样他经过了七个村子后还剩两只鸭子，问他出发时共赶多少只鸭子？经过每个村子卖出多少只鸭子？</strong></p>
+<p>由题目可得知当经过第八个村庄时鸭子数量为2，所以利用已知条件由后向前递归计算可较为简便计算出出发时的总数，即第一个村庄的数量。由题意可轻松计算每个村庄卖出的数量。</p>
+<p><strong>②角谷定理。输入一个自然数，若为偶数，则把它除以2，若为奇数，则把它乘以3加1。经过如此有限次运算后，总可以得到自然数值1。求经过多少次可得到自然数1。<br>如：输入22，<br>输出 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1<br>STEP=16</strong></p>
+<p>由题意可知应将输入数据分为1，偶数，奇数三种情况，分别进行分支处理。当经过选择递归后，当n 变为1后，程序到达递归出口。</p>
+<h3 id="二．-算法构造"><a href="#二．-算法构造" class="headerlink" title="二．    算法构造"></a>二．    算法构造</h3><p><img src="https://img-blog.csdnimg.cn/20190531161550148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2019053116161344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="三．-算法实现"><a href="#三．-算法实现" class="headerlink" title="三．    算法实现"></a>三．    算法实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">________________________1________________________</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sellduck</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">duckNum</span><span class="params">(<span class="keyword">int</span> n )</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">8</span>) &#123;<span class="comment">//递归出口</span></span><br><span class="line">			<span class="keyword">return</span> <span class="number">2</span>;<span class="comment">//第七个村庄以后 剩下两只</span></span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">return</span>	<span class="number">2</span>*(duckNum(n+<span class="number">1</span>)+<span class="number">1</span>);<span class="comment">//递归调用</span></span><br><span class="line">	&#125;		</span><br><span class="line">		 </span><br><span class="line">	&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SellDuck</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;<span class="comment">//剩下的鸭子数n 调用时输入2</span></span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">7</span>;</span><br><span class="line">		<span class="keyword">for</span>(;count &gt;= <span class="number">1</span>;count--) &#123;</span><br><span class="line">			System.out.println(<span class="string">"第"</span>+count+<span class="string">"个村子卖的鸭子数为:"</span>+(n+<span class="number">2</span>));</span><br><span class="line">			n = (n+<span class="number">1</span>) * <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"他开始有的鸭子数为："</span>+n);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> num = duckNum(<span class="number">1</span>);</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"总共赶鸭子"</span>+num+<span class="string">"只"</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span> ;i&lt;=<span class="number">7</span>;i++) &#123;<span class="comment">//循环计算每个村庄的具体数目</span></span><br><span class="line">		<span class="keyword">int</span> all = duckNum(i);</span><br><span class="line">		<span class="keyword">int</span> sale= all/<span class="number">2</span>+<span class="number">1</span>;<span class="comment">//计算卖出鸭子数</span></span><br><span class="line">		<span class="keyword">int</span> remain= all-sale;</span><br><span class="line">		System.out.println(<span class="string">"经过第"</span>+(i)+<span class="string">"个村庄时卖了"</span>+sale+<span class="string">"只鸭子，还剩"</span>+remain+<span class="string">"只"</span>);</span><br><span class="line">			SellDuck(<span class="number">2</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">_________________________2_______________________</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">valley_number</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">vall_Num</span><span class="params">( <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">			count++;</span><br><span class="line">			System.out.println(n);<span class="comment">//输出1️后停止递归</span></span><br><span class="line">			System.out.println(<span class="string">"step:"</span>+count);</span><br><span class="line">			<span class="keyword">return</span> ;<span class="comment">//计算结果得到1时到达递归出口</span></span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">1</span>) &#123;</span><br><span class="line">			count++;</span><br><span class="line">			System.out.print(n+<span class="string">" "</span>);</span><br><span class="line">			n=n*<span class="number">3</span>+<span class="number">1</span>;<span class="comment">//执行计算结果为奇数时的表达式</span></span><br><span class="line">			vall_Num(n);<span class="comment">//递归</span></span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			count++;</span><br><span class="line">			System.out.print(n+<span class="string">" "</span>);</span><br><span class="line">			</span><br><span class="line">			n=n/<span class="number">2</span>;<span class="comment">//执行计算结果为偶数时的表达式</span></span><br><span class="line">			vall_Num(n);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"please input a int Number"</span>);</span><br><span class="line">		<span class="keyword">int</span>  n= sc.nextInt();</span><br><span class="line">		 vall_Num(n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="四．-调试测试"><a href="#四．-调试测试" class="headerlink" title="四．    调试测试"></a>四．    调试测试</h3><p><img src="https://img-blog.csdnimg.cn/20190531162020885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190531162054959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190531162242952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="五．-经验总结"><a href="#五．-经验总结" class="headerlink" title="五．    经验总结"></a>五．    经验总结</h3><pre><code>通过编程掌握了递归程序设计的方法，更深理解了递归的概念，掌握了递归数学模型的建立，及递归程序和非递归程序之间的转换。具体递归问题分析时应先找出递归关系和递归出口。
+   相同问题下，利用递归求解可减少代码量，但是从性能角度来看，递归函数调用自身 ，将会产生时间和内存空间的消耗，同时也有可能存在一些重复计算，这就造成了效率不高的问题。当调用层次过多时还有可能导致 出现栈溢出的状况。</code></pre>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-单词小助手功能完善（C）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/%E5%8D%95%E8%AF%8D%E5%B0%8F%E5%8A%A9%E6%89%8B%E5%8A%9F%E8%83%BD%E5%AE%8C%E5%96%84%EF%BC%88C%EF%BC%89/"
+    >单词小助手完善</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/%E5%8D%95%E8%AF%8D%E5%B0%8F%E5%8A%A9%E6%89%8B%E5%8A%9F%E8%83%BD%E5%AE%8C%E5%96%84%EF%BC%88C%EF%BC%89/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.144Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-s-hert/">C s hert</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="一．-题目分析"><a href="#一．-题目分析" class="headerlink" title="一．    题目分析"></a>一．    题目分析</h3><ol>
+<li>在原有代码基础上添加文档注释，函数注释及语句注释，使代码风格良好，易于阅读和修改。</li>
+<li>完善功能，实现背单词时出错词的重复记忆。</li>
+<li>在词库维护选项中添加中英文分别查询的功能</li>
+<li>完成输如数据的正确性验证，如：在菜单选择时输入不规范的错误提示、在添加单词时英文输入时输入汉语的异常排除等</li>
+</ol>
+<h3 id="二．-关键算法构造"><a href="#二．-关键算法构造" class="headerlink" title="二．    关键算法构造"></a>二．    关键算法构造</h3><p>1．    总菜单项目选择及maintain函数子选项的输入异常检查及提示。<br><img src="https://img-blog.csdnimg.cn/2019040413093847.jpg" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/2019040413095157.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2．    添加单词<br><img src="https://img-blog.csdnimg.cn/2019040413252857.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190404132543883.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="三．-程序实现"><a href="#三．-程序实现" class="headerlink" title="三．    程序实现"></a>三．    程序实现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_CHAR 20 <span class="comment">// 最大字符</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_NUM 200 <span class="comment">// 单词的最大个数</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">word</span></span></span><br><span class="line"><span class="class">//单词的结构体</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">char</span> en[MAX_CHAR]; <span class="comment">// 英文形式</span></span><br><span class="line"> <span class="keyword">char</span> ch[MAX_CHAR]; <span class="comment">//中文形式</span></span><br><span class="line">&#125; s[MAX_NUM],r[MAX_NUM]; <span class="comment">//单词数组</span></span><br><span class="line"><span class="keyword">int</span> num; <span class="comment">//词典单词个数</span></span><br><span class="line"><span class="keyword">int</span> rnum = <span class="number">0</span>; <span class="comment">//增强记忆单词个数</span></span><br><span class="line"><span class="keyword">int</span> select=<span class="number">1</span>;<span class="comment">//select 为是否退出系统的标记</span></span><br><span class="line"><span class="keyword">int</span> d=<span class="number">0</span>,c=<span class="number">0</span>;<span class="comment">//c为答错的次数，d为答对的次数</span></span><br><span class="line"><span class="comment">//帮助</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">help</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n本系统主要实现英语单词学习的功能。用户可对词典文件中的单词进行预览，增删改查。"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n同时还可进行中英、英中测试。本系统还提供了测试成绩的显示功能。"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//从文件中读取单词的信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">readfile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">FILE *fp;</span><br><span class="line"> <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line"> fp=fopen(<span class="string">"data.txt"</span>,<span class="string">"r"</span>);</span><br><span class="line"> <span class="keyword">if</span>(!fp)</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n打开文件data.txt失败!"</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">fscanf</span>(fp,<span class="string">"%s %s "</span>,s[i].en,s[i].ch)==<span class="number">2</span>)</span><br><span class="line"> &#123;</span><br><span class="line"> i++;</span><br><span class="line"> &#125;</span><br><span class="line"> num=i;</span><br><span class="line"> <span class="keyword">if</span>(<span class="number">0</span>==i)</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n文件为空，请选择词典维护增加词条！"</span>);</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"> fclose(fp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//向文件中写入单词</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">writefile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">FILE *fp;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">fp=fopen(<span class="string">"data.txt"</span>,<span class="string">"w"</span>);</span><br><span class="line"> <span class="keyword">if</span>(!fp)</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n打开文件data.txt失败!"</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num;i++)</span><br><span class="line"> &#123;</span><br><span class="line"><span class="built_in">fprintf</span>(fp,<span class="string">"\n%s %s "</span>,s[i].en,s[i].ch);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"> fclose(fp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//从增强记忆文件中读取单词</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">readRemeberfile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">FILE *fp;</span><br><span class="line"> <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line"> fp=fopen(<span class="string">"Remeberdata.txt"</span>,<span class="string">"r"</span>);</span><br><span class="line"> <span class="keyword">if</span>(!fp)</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n打开文件Remeberdata.txt失败!"</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">fscanf</span>(fp,<span class="string">"%s %s "</span>,r[i].en,r[i].ch)==<span class="number">2</span>)</span><br><span class="line"> &#123;</span><br><span class="line"> i++;</span><br><span class="line"> &#125;</span><br><span class="line"> rnum=i;</span><br><span class="line"> <span class="keyword">if</span>(<span class="number">0</span>==i)</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n你还没有错题哦！"</span>);</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"> fclose(fp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">()</span><span class="comment">/*按字典排序*/</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i,j;</span><br><span class="line"><span class="keyword">char</span> temp[MAX_CHAR];</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num<span class="number">-1</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">for</span>(j=num<span class="number">-1</span>;j&gt;i;j--)</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">strcmp</span>(s[j<span class="number">-1</span>].en,s[j].en)&gt;<span class="number">0</span>)<span class="comment">//string类strcmp函数通过Ascll 码逐字符比较 </span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">strcpy</span>(temp,s[j<span class="number">-1</span>].en);</span><br><span class="line"><span class="built_in">strcpy</span>(s[j<span class="number">-1</span>].en,s[j].en);</span><br><span class="line"><span class="built_in">strcpy</span>(s[j].en,temp);</span><br><span class="line"><span class="built_in">strcpy</span>(temp,s[j<span class="number">-1</span>].ch);</span><br><span class="line"><span class="built_in">strcpy</span>(s[j<span class="number">-1</span>].ch,s[j].ch);</span><br><span class="line"><span class="built_in">strcpy</span>(s[j].ch,temp);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//添加单词信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i=num,j,flag=<span class="number">1</span>,a;</span><br><span class="line">f: <span class="keyword">while</span>(flag)</span><br><span class="line">&#123;</span><br><span class="line">flag=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n请输入单词的英文形式:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,s[i].en);</span><br><span class="line"><span class="comment">//strncpy(c,s[i].en.c_str(),s[i].en.length());</span></span><br><span class="line"><span class="keyword">for</span>(a=<span class="number">0</span>;a&lt;<span class="number">20</span>;a++)</span><br><span class="line">&#123;<span class="keyword">if</span>(s[i].en[a]&gt;&gt;<span class="number">8</span>==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">continue</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;<span class="built_in">printf</span>(<span class="string">"输入不是纯英文，请重新输入"</span>);</span><br><span class="line">flag=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">goto</span> f;<span class="comment">//当不是纯英文输入时跳转 </span></span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//if(a!=19) continue;</span></span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">strcmp</span>(s[i].en,s[j].en)==<span class="number">0</span>)<span class="comment">//与已有单词比较 </span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"已有该单词,请检查后重新录入!\n"</span>);</span><br><span class="line">flag=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">break</span>; <span class="comment">/*如有重复立即退出该层循环,提高判断速度*/</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n请输入单词的中文形式:"</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s[i].ch);</span><br><span class="line"> num++;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n您输入的信息为: 英文: %s 中文: %s "</span>,s[i].en,s[i].ch);</span><br><span class="line">sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除单词信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> en[MAX_CHAR];<span class="comment">//英文形式</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n请输入你要删除的单词英文形式:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,en);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num;i++)<span class="comment">//先找到该英文形式对应的序号</span></span><br><span class="line"> <span class="keyword">if</span>(<span class="built_in">strcmp</span>(s[i].en,en)==<span class="number">0</span>)<span class="comment">//判断已有单词中是否存在此词 </span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">for</span>(j=i;j&lt;num<span class="number">-1</span>;j++)</span><br><span class="line"> s[j]=s[j+<span class="number">1</span>];</span><br><span class="line">num--; <span class="comment">//数量减少 1</span></span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n没有这个单词!"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//修改单词信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>,choose=<span class="number">0</span>,flag=<span class="number">1</span>;<span class="comment">//chooses代表选项标识，flag代表是否找到单词</span></span><br><span class="line"><span class="keyword">char</span> en[MAX_CHAR]; <span class="comment">//英文形式</span></span><br><span class="line"><span class="keyword">while</span>(flag||choose)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n请输入你要修改的单词英文形式:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,en);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num;i++)<span class="comment">//先找到该英文形式对应的序号</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">strcmp</span>(s[i].en,en)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n请输入单词正确的英文形式:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,s[i].en);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n请输入此单词正确的的中文形式:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,s[i].ch);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n继续修改请选1，返回上一级请选0:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"><span class="keyword">if</span>(choose==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"> flag=<span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">if</span>(!flag)</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n没有这个单词!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//单词预览</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n单词：      英文           中文       "</span>);<span class="comment">//格式对齐 </span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num;i++)</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n           %-15s%-13s"</span>,s[i].en,s[i].ch);<span class="comment">//单词预览 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查询单词</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">search</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>,choose=<span class="number">0</span>,flag=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">char</span> ch[MAX_CHAR];<span class="comment">//中文形式</span></span><br><span class="line"><span class="keyword">while</span>(choose||flag)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n请输入你要查询的单词中文形式:"</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num;i++)<span class="comment">//先找到该中文形式对应的序号</span></span><br><span class="line"> <span class="keyword">if</span>(<span class="built_in">strcmp</span>(s[i].ch,ch)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n英文形式       中文形式         "</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n %-12s%12s"</span>,s[i].en,s[i].ch);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n继续查询请选1，返回上一级请选0:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"><span class="keyword">if</span>(choose==<span class="number">0</span>) <span class="keyword">return</span>;&#125;</span><br><span class="line"> flag=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">if</span>(!flag) <span class="built_in">printf</span>(<span class="string">"\n没有这个单词!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查询单词(英)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ysearch</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>,choose=<span class="number">0</span>,flag=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">char</span> en[MAX_CHAR]; <span class="comment">//英文形式</span></span><br><span class="line"><span class="keyword">while</span>(choose||flag)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n请输入你要查询的单词英文形式:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,en);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;num;i++)<span class="comment">//先找到该中文形式对应的序号</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">strcmp</span>(s[i].en,en)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n英文形式          中文形式 "</span>);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n %-12s%12s"</span>,s[i].en,s[i].ch);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n继续查询请选1，返回上一级请选0:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"><span class="keyword">if</span>(choose==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"> flag=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">if</span>(!flag) <span class="built_in">printf</span>(<span class="string">"\n没有这个单词!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//中译英测试</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">zytest</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">char</span> b1[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> z;</span><br><span class="line"><span class="keyword">int</span> choose=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line">FILE *fp;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(choose)</span><br><span class="line">&#123; </span><br><span class="line">fp=fopen(<span class="string">"Remeberdata.txt"</span>,<span class="string">"a+"</span>);<span class="comment">//打开增强记忆文件</span></span><br><span class="line"><span class="keyword">if</span>(!fp)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n打开文件Remeberdata.txt失败!"</span>);</span><br><span class="line">&#125;</span><br><span class="line">i = rand()%num;<span class="comment">//在已有词汇中随机选取 </span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n【%s】请输入英文单词:"</span>,s[i].ch);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);</span><br><span class="line"><span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(z=<span class="number">0</span>;<span class="built_in">strcmp</span>(b1,s[i].en)!=<span class="number">0</span>;z++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(z&lt;=<span class="number">3</span>)&#123;</span><br><span class="line">	</span><br><span class="line"><span class="built_in">fprintf</span>(fp,<span class="string">"\n%s %s "</span>,s[i].en,s[i].ch);<span class="comment">//回答错误时写入增强记忆文件</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n输入错误！！请重新输入:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);c=c+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">rnum++;&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"小伙子，挣扎有用吗，快滚去看字典"</span>);</span><br><span class="line">	flag=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">break</span>; </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(flag)</span><br><span class="line">&#123;<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">fclose(fp);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n恭喜你，回答正确，加10分!\n\n"</span>);d=d+<span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n继续测试请选1，返回上一级请选0:"</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"><span class="keyword">if</span>(choose==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//英译中测试</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">yztest</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">char</span> b1[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> z,x=<span class="number">41</span>;</span><br><span class="line"><span class="keyword">int</span> choose=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"> <span class="comment">//i = rand()%num;写入循环中</span></span><br><span class="line">FILE *fp;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(choose)</span><br><span class="line">&#123; </span><br><span class="line">i = rand()%num;</span><br><span class="line">fp=fopen(<span class="string">"Remeberdata.txt"</span>,<span class="string">"a+"</span>);</span><br><span class="line"><span class="keyword">if</span>(!fp)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n打开文件Remeberdata.txt失败!"</span>);<span class="comment">//打开增强记忆文件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"【%s】请输入中文意思:"</span>,s[i].en);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);</span><br><span class="line"><span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(z=<span class="number">0</span>;<span class="built_in">strcmp</span>(b1,s[i].ch)!=<span class="number">0</span>;z++)</span><br><span class="line">&#123;<span class="keyword">if</span>(z&lt;=<span class="number">3</span>)&#123;</span><br><span class="line"></span><br><span class="line">fp=fopen(<span class="string">"Remeberdata.txt"</span>,<span class="string">"a+"</span>);</span><br><span class="line"><span class="keyword">if</span>(!fp)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n打开文件Remeberdata.txt失败!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">fprintf</span>(fp,<span class="string">"\n%s %s "</span>,s[i].en,s[i].ch);<span class="comment">//回答错误时写入增强记忆文件</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"输入错误！！请重新输入:"</span>);&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;<span class="built_in">printf</span>(<span class="string">"小伙子，别挣扎了，看词典吧 "</span>); </span><br><span class="line">flag = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">break</span>;&#125;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);c=c+<span class="number">1</span>;</span><br><span class="line">rnum++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(flag)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;fclose(fp);</span><br><span class="line"></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n恭喜你，回答正确，加10分!\n\n"</span>);d=d+<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n继续测试请选1，返回上一级请选0:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"><span class="keyword">if</span>(choose==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//中英增强记忆</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">zyRetest</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">char</span> b1[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> z;</span><br><span class="line"> <span class="keyword">int</span> choose=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(choose)</span><br><span class="line">&#123; </span><br><span class="line">i = rand()%rnum;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n【%s】请输入英文单词:"</span>,r[i].ch);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);</span><br><span class="line"><span class="keyword">for</span>(z=<span class="number">0</span>;<span class="built_in">strcmp</span>(b1,r[i].en)!=<span class="number">0</span>;z=z)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n输入错误！！请重新输入:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);c=c+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n恭喜你，回答正确，加10分!\n\n"</span>);d=d+<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n继续测试请选1，返回上一级请选0:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"><span class="keyword">if</span>(choose==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//英中增强记忆</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">yzRetest</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">char</span> b1[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> z,x=<span class="number">41</span>;</span><br><span class="line"><span class="keyword">int</span> choose=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">while</span>(choose)</span><br><span class="line">&#123; </span><br><span class="line">i = rand()%num;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"【%s】请输入中文意思:"</span>,r[i].en);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);</span><br><span class="line"><span class="keyword">for</span>(z=<span class="number">0</span>;<span class="built_in">strcmp</span>(b1,r[i].ch)!=<span class="number">0</span>;z=z)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"输入错误！！请重新输入:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,b1);c=c+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n恭喜你，回答正确，加10分!\n\n"</span>);d=d+<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"\n继续测试请选1，返回上一级请选0:"</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"> <span class="keyword">if</span>(choose==<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//成绩列表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">list</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n共计输入错误:%d次**每次扣10分**\n"</span>,c);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"共计输入正确:%d次**每次加10分**\n"</span>,d);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"你的总得分为:%d分\n\n"</span>,<span class="number">10</span>*d<span class="number">-10</span>*c);<span class="comment">//计算最后得分 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//词典维护</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maintain</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">int</span> choose;<span class="comment">//维护功能选择</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" ------------------\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" 1.增加单词\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" 2.修改单词\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" 3.删除单词\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" 4.查询单词(中)\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" 5.查询单词(英)\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" 6.退出本菜单\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" ------------------\n"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123; </span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">" \n请输入维护功能编号:"</span>);<span class="comment">//输入非法排错 </span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line"><span class="keyword">int</span> ret;</span><br><span class="line">ret=choose; </span><br><span class="line">    <span class="keyword">while</span> (ret != <span class="number">1</span>||ret !=<span class="number">2</span>||ret!=<span class="number">3</span>||ret!=<span class="number">4</span>||ret!=<span class="number">5</span>||ret!=<span class="number">6</span>)<span class="comment">//将输入限定在0-6的整数 </span></span><br><span class="line">    &#123;   <span class="keyword">if</span>(ret&gt;<span class="number">6</span>||ret&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">while</span> (getchar() != <span class="string">'\n'</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"error input,please again.\n"</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;choose);</span><br><span class="line">        ret =choose;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		</span><br><span class="line">    &#125;<span class="comment">//直到输入的值为整数*/</span></span><br><span class="line">ret=choose;</span><br><span class="line"><span class="keyword">switch</span>(ret)</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line"> add();writefile();<span class="keyword">break</span>;</span><br><span class="line"> <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line"> modify();writefile();<span class="keyword">break</span>;</span><br><span class="line"> <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line"> del();writefile();<span class="keyword">break</span>;</span><br><span class="line"> <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line"> search();<span class="keyword">break</span>;</span><br><span class="line"> <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line"> ysearch();<span class="keyword">break</span>;</span><br><span class="line"> <span class="keyword">case</span> <span class="number">6</span>: <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">default</span>: <span class="built_in">printf</span>(<span class="string">"\n请在1-6之间选择"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用户界面</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">menu</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"><span class="keyword">int</span> item;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"                                                                        \n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              __________________________________________________________\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                 英语单词小助手                       ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||              版本 ： v1.0                            ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              __________________________________________________________\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||       0.词库维护              1.单词预览             ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||       2.单词背诵(中英)        3.单词背诵(英中)          ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||       4.查询成绩              5.帮助                  ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||       6.增强记忆(中英)        7.增强记忆(英中)          ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||       8.退出                                         ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              ||                                                      ||\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              __________________________________________________________\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"              请选择您需要的操作序号(0-8)按回车确认:"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;item);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"><span class="keyword">int</span> ret;</span><br><span class="line">ret=item; </span><br><span class="line">    <span class="keyword">while</span> (ret != <span class="number">1</span>||ret !=<span class="number">2</span>||ret!=<span class="number">3</span>||ret!=<span class="number">4</span>||ret!=<span class="number">5</span>||ret!=<span class="number">6</span>||ret!=<span class="number">7</span>||ret!=<span class="number">8</span>)<span class="comment">//将输入限定在0-6的整数 </span></span><br><span class="line">    &#123;   <span class="keyword">if</span>(ret&gt;<span class="number">8</span>||ret&lt;<span class="number">0</span>)&#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">while</span> (getchar() != <span class="string">'\n'</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"error input,please again.\n"</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;item);</span><br><span class="line">        ret =item;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		</span><br><span class="line">    &#125;<span class="comment">//直到输入的值为整数*/</span></span><br><span class="line">ret=item;</span><br><span class="line"> readfile();</span><br><span class="line"><span class="keyword">switch</span>(ret)</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line"> show();<span class="built_in">maintain</span>();<span class="keyword">break</span>;<span class="comment">//词库维护 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line"> show();<span class="keyword">break</span>; <span class="comment">//单词预览 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line"> zytest();<span class="keyword">break</span>;<span class="comment">//中英背词测试 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line"> yztest(); <span class="keyword">break</span>;<span class="comment">//英中背刺测试 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line"> <span class="built_in">list</span>();<span class="keyword">break</span>;<span class="comment">//成绩查询 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line"> help();<span class="keyword">break</span>;<span class="comment">//使用帮助 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line"> readRemeberfile();zyRetest();<span class="keyword">break</span>;<span class="comment">//调用文件读入已插入词汇，进行重复中英记忆 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line"> readRemeberfile();yzRetest();<span class="keyword">break</span>;<span class="comment">// 调用文件读入已插入词汇，进行重复英中记忆 </span></span><br><span class="line"> <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line"> select =<span class="number">0</span>;<span class="keyword">break</span>;<span class="comment">//退出子选项 </span></span><br><span class="line"> <span class="keyword">default</span>:</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"请在0-8之间选择\n"</span>);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"><span class="keyword">while</span>(select)</span><br><span class="line">&#123;</span><br><span class="line">menu();</span><br><span class="line">&#125;</span><br><span class="line">system(<span class="string">"pause"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="四．-经验归纳"><a href="#四．-经验归纳" class="headerlink" title="四．    经验归纳"></a>四．    经验归纳</h3><p>   此次程序设计在原有基础程序的基础上，实现功能的完善，侧重于程序的结构化及精细化编写。在单词汉英查询模块，使用了string库 strcmp函数，利用字符Ascll码的比较实现字符的相同与否判断。在判断输入输入字符是否为纯英文时，用到位运算右移八位得到最高位二进制，1则为汉语，0为英文。</p>
+<p>   通过本次程序代码编写，再次熟悉了文件操作，认识到程序结构化的重要性。虽然在上课时强调过少用甚至不用goto语句，但是在中英文识别的函数中由于while(for(if（flag）))的嵌套使用，导致逻辑有些混乱，还是不可避免的使用了goto语句，好在最终最终解决了问题。所以在以后设计逻辑算法的时候，要尽量用能驾驭的语句实现，否则会出现意想不到的逻辑错误，甚至到用goto语句破坏程序结构性的地步。</p>
 
       
       <!-- reward -->
@@ -135,6 +220,793 @@
     <footer class="article-footer">
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Spring MVC 跨服务器上传图片出现405 _403_409错误" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/Spring%20MVC%20%E8%B7%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%87%BA%E7%8E%B0405%20_403_409%E9%94%99%E8%AF%AF/"
+    >Spring Mvc 跨服务器上传图片405、403、409异常</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/Spring%20MVC%20%E8%B7%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%87%BA%E7%8E%B0405%20_403_409%E9%94%99%E8%AF%AF/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.128Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="1-0-status-403"><a href="#1-0-status-403" class="headerlink" title="1.0 status 403"></a>1.0 status 403</h3><p>详情如图：<br><img src="https://img-blog.csdnimg.cn/20200227194343278.png" alt="status 403"><br>原因： 在使用local Tomcat 部署项目时，因为Tomcat服务器默认为文件只读模式，所以在调用webResource的put()方法时字节数组无法通过服务器写入对应的url地址写入。</p>
+<h5 id="解决方法：更改Tomcat服务器文件读写模式"><a href="#解决方法：更改Tomcat服务器文件读写模式" class="headerlink" title="解决方法：更改Tomcat服务器文件读写模式"></a>解决方法：更改Tomcat服务器文件读写模式</h5><p>在本地安装的Tomcat文件夹下找到如下参考路径：<br><strong>D:\Tomcat9.0_Tomcat9.2\conf\web.xml</strong><br><img src="https://img-blog.csdnimg.cn/20200227195323241.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">       	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>readonly<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">       	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-1-status-405"><a href="#1-1-status-405" class="headerlink" title="1.1 status  405"></a>1.1 status  405</h3><p>当修改了Tomcat服务器web.xml文件后，只重启了发送端服务器，而图片接收端服务器没有重启时，就会出现以下异常。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200227195745649.png" alt="status 405"></p>
+<h5 id="解决方法：将两个服务器都进行重启，重新部署刷新项目"><a href="#解决方法：将两个服务器都进行重启，重新部署刷新项目" class="headerlink" title="解决方法：将两个服务器都进行重启，重新部署刷新项目"></a>解决方法：将两个服务器都进行重启，重新部署刷新项目</h5><h3 id="2-0-status-409"><a href="#2-0-status-409" class="headerlink" title="2.0 status 409"></a>2.0 status 409</h3><p>修改完Tomcat服务器web.xml，项目重启正常时，如果在接受图片的服务器没有路径中的文件夹时，会出现如下异常。<br><img src="https://img-blog.csdnimg.cn/20200227200105338.png" alt="在这里插入图片描述"><br>原因，调用webResource的put()方法时无法找到图片服务器相应的资源文件夹。因为服务器打包项目后资源文件存在target文件夹下，在其路径下找到与项目名称相同的文件夹新建路径中的目标文件夹即可（以uploads为例），如下图。<br><img src="https://img-blog.csdnimg.cn/20200227200818578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="特别注意的是：如果项目采用maven-Tomcat插件进行部署的话，则需要在本地maven仓库中找到Tomcat的相应文件进行更改。花费时间较多，如果项目只是练手的话，建议改成本地Tomcat服务器进行部署。"><a href="#特别注意的是：如果项目采用maven-Tomcat插件进行部署的话，则需要在本地maven仓库中找到Tomcat的相应文件进行更改。花费时间较多，如果项目只是练手的话，建议改成本地Tomcat服务器进行部署。" class="headerlink" title="特别注意的是：如果项目采用maven Tomcat插件进行部署的话，则需要在本地maven仓库中找到Tomcat的相应文件进行更改。花费时间较多，如果项目只是练手的话，建议改成本地Tomcat服务器进行部署。"></a>特别注意的是：如果项目采用maven Tomcat插件进行部署的话，则需要在本地maven仓库中找到Tomcat的相应文件进行更改。花费时间较多，如果项目只是练手的话，建议改成本地Tomcat服务器进行部署。</h3>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Web/" rel="tag">Java Web</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Servlet 实现简易验证码" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/Servlet%20%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E9%AA%8C%E8%AF%81%E7%A0%81/"
+    >servlet 实现简易验证码</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/Servlet%20%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E9%AA%8C%E8%AF%81%E7%A0%81/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.113Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="一-验证码本质解释"><a href="#一-验证码本质解释" class="headerlink" title="一.验证码本质解释"></a>一.验证码本质解释</h3><p>1.本质：图片<br>2.目的：防止恶意表单注册</p>
+<h3 id="二-验证码生成过程分析"><a href="#二-验证码生成过程分析" class="headerlink" title="二.验证码生成过程分析"></a>二.验证码生成过程分析</h3><p>新建JavaWeb 项目，在src 下新建Servlet ，编写servlet逻辑代码<br><img src="https://img-blog.csdnimg.cn/20190815133012484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="三-代码实现"><a href="#三-代码实现" class="headerlink" title="三.代码实现"></a>三.代码实现</h3><p>新建JavaWeb 项目，在src 下新建Servlet ，编写servlet逻辑代码，在tomcat服务器部署项目</p>
+<h6 id="servlet-代码如下"><a href="#servlet-代码如下" class="headerlink" title="servlet 代码如下"></a>servlet 代码如下</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sun.image.codec.jpeg.JPEGCodec;</span><br><span class="line"><span class="keyword">import</span> com.sun.image.codec.jpeg.JPEGImageEncoder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"><span class="keyword">import</span> javax.imageio.plugins.jpeg.JPEGImageWriteParam;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.image.BufferedImage;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/checkCodeServlet"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">checkCodeServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> width=<span class="number">500</span>;</span><br><span class="line">        <span class="keyword">int</span> height=<span class="number">300</span>;</span><br><span class="line">        BufferedImage image = <span class="keyword">new</span> BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//美化图片</span></span><br><span class="line">        <span class="comment">//2.1 填充背景色</span></span><br><span class="line">        Graphics g = image.getGraphics();</span><br><span class="line">        g.setColor(Color.pink);</span><br><span class="line">        g.fillRect(<span class="number">0</span>,<span class="number">0</span>,width,height);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//画边框</span></span><br><span class="line">        g.setColor(Color.red);</span><br><span class="line">        g.drawRect(<span class="number">0</span>,<span class="number">0</span>,width-<span class="number">1</span>,height-<span class="number">1</span>);</span><br><span class="line">        String str = <span class="string">"QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890"</span>;</span><br><span class="line">        <span class="comment">//生成随机角标</span></span><br><span class="line">        g.setColor(Color.blue);</span><br><span class="line">        Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//写验证码</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;=<span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> index= rand.nextInt(str.length());</span><br><span class="line">            <span class="keyword">char</span> ch= str.charAt(index);</span><br><span class="line">            g.drawString(ch+<span class="string">""</span>,width/<span class="number">5</span>*i,height/<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//画干扰线</span></span><br><span class="line">        g.setColor(Color.GREEN);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">10</span> ; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> x1=rand.nextInt(width);</span><br><span class="line">            <span class="keyword">int</span> x2=rand.nextInt(width);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> y1=rand.nextInt(width);</span><br><span class="line">            <span class="keyword">int</span> y2=rand.nextInt(width);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            g.drawLine(x1,y1,x2,y2);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//将图片输出到页面</span></span><br><span class="line"><span class="comment">//        ImageIO.write(image,"jpg",resp.getOutputStream());</span></span><br><span class="line">        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(resp.getOutputStream());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        encoder.encode(image);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.doPost(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-实现效果"><a href="#四-实现效果" class="headerlink" title="四.实现效果"></a>四.实现效果</h3><p><img src="https://img-blog.csdnimg.cn/20190815133631885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="部署完成后，刷新浏览器页面，即可实现验证码图片的更新"><a href="#部署完成后，刷新浏览器页面，即可实现验证码图片的更新" class="headerlink" title="部署完成后，刷新浏览器页面，即可实现验证码图片的更新"></a>部署完成后，刷新浏览器页面，即可实现验证码图片的更新</h5>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Web/" rel="tag">Java Web</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-python 实现图灵机 XN_2 模拟" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/python%20%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%81%B5%E6%9C%BA%20XN_2%20%E6%A8%A1%E6%8B%9F/"
+    >python 实现图灵机XN_2 模拟</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/python%20%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%81%B5%E6%9C%BA%20XN_2%20%E6%A8%A1%E6%8B%9F/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.097Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python-%E5%BA%94%E7%94%A8/">Python 应用</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="一．-题目分析"><a href="#一．-题目分析" class="headerlink" title="一．    题目分析"></a>一．    题目分析</h3><p>通过编程模拟某一图灵机的工作过程，掌握图灵机的概念与基本结构。将图灵机内态变化及指令输出用高级语言实现逐行输出。从而理解图灵机的编码方式。</p>
+<h3 id="二．-算法构造"><a href="#二．-算法构造" class="headerlink" title="二．    算法构造"></a>二．    算法构造</h3><ol>
+<li>实现输入十进制整数的二进制编码，并将其转化为二进制扩展码。</li>
+<li>选择图灵机（XN*2），将1转化过来的二进制扩展码用if（elif）语句实现判断后的图灵机指令操作。</li>
+<li>Show_binary函数对2中turing_operate操作后的二进制码（字符串）进行输出。</li>
+<li>调用方法，实现完整功能</li>
+</ol>
+<h3 id="三．-算法实现"><a href="#三．-算法实现" class="headerlink" title="三．    算法实现"></a>三．    算法实现</h3><h5 id="Python（Pycharm）编译"><a href="#Python（Pycharm）编译" class="headerlink" title="Python（Pycharm）编译"></a>Python（Pycharm）编译</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conversion_nu</span><span class="params">()</span>:</span></span><br><span class="line">    decimalism = int(input(<span class="string">"请输入您的整数："</span>))</span><br><span class="line">    binary = bin(decimalism).replace(<span class="string">'0b'</span>, <span class="string">''</span>)  <span class="comment"># bin 函数转化十进制</span></span><br><span class="line">    print(<span class="string">"转化为二进制为："</span>+binary)</span><br><span class="line">    </span><br><span class="line">    tensor = list(map(int, binary)) <span class="comment"># 将二进制转为列表</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> tensor[<span class="number">0</span>] == <span class="string">'0'</span>: <span class="comment"># 判断输入值0时的情况</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        new_tensor = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>] <span class="comment"># 任何非零数据转化二进制第一位010</span></span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> tensor[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> a == <span class="number">1</span>:</span><br><span class="line">                new_tensor.append(<span class="number">10</span>) <span class="comment"># 对第二位后的值进行操作，将操作值存在new_tensor中</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> a == <span class="number">0</span>:</span><br><span class="line">                    new_tensor.append(<span class="number">0</span>)</span><br><span class="line">        new_tensor.append(<span class="number">110</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> new_tensor <span class="comment"># 返回值作为turing_operate 的参数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''turing machine operation</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">turing_operate</span><span class="params">(new_tensor)</span>:</span></span><br><span class="line"></span><br><span class="line">    tend = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> new_tensor]</span><br><span class="line">    tend.append(<span class="string">"0"</span>) <span class="comment"># 内态补位操作</span></span><br><span class="line">    tend.append(<span class="string">'0'</span>)</span><br><span class="line"></span><br><span class="line">    a = <span class="string">''</span>.join(tend)</span><br><span class="line">    eve_tend = list(a)  <span class="comment"># 转化为单值字符</span></span><br><span class="line"></span><br><span class="line">    state = <span class="string">'0'</span> <span class="comment"># 初始化内态</span></span><br><span class="line">    arr = []</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    图灵机操作</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(eve_tend)):</span><br><span class="line">        print(<span class="string">"第"</span> + str(i+<span class="number">1</span>) + <span class="string">"步"</span>)</span><br><span class="line">        <span class="keyword">if</span> state == <span class="string">'0 '</span><span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'0'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'0'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'0'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'1'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'1'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'0'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'1'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'0'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'1'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'1'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'1'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'10'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'0'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'10'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'11'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'1'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'11'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'0'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'1'</span></span><br><span class="line"></span><br><span class="line">            arr.append(eve_tend)</span><br><span class="line">        carry = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> eve_tend] <span class="comment"># 聚合操作后的列表</span></span><br><span class="line">        temp = <span class="string">''</span>.join(carry)</span><br><span class="line">        print(<span class="string">"当前内态: "</span>+state+<span class="string">"    "</span>+<span class="string">"当前扩展码: "</span>+temp)</span><br><span class="line">    print(<span class="string">"stop"</span>)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_to_metric</span><span class="params">(arr)</span>:</span></span><br><span class="line">    metric = arr[<span class="number">0</span>]</span><br><span class="line">    tes = [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> metric]</span><br><span class="line">    <span class="comment">#print(tes)</span></span><br><span class="line">    final = []</span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(<span class="number">0</span>, len(tes)):</span><br><span class="line">        <span class="keyword">if</span> tes[e] == <span class="number">1</span> <span class="keyword">and</span> tes[e + <span class="number">1</span>] == <span class="number">0</span>:</span><br><span class="line">            final.append(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> (e + <span class="number">1</span>) &lt; len(tes) <span class="keyword">and</span> tes[e] == <span class="number">0</span> <span class="keyword">and</span> tes[e + <span class="number">1</span>] == <span class="number">0</span>:</span><br><span class="line">            final.append(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> tes[e] == <span class="number">1</span> <span class="keyword">and</span> tes[e + <span class="number">1</span>] == <span class="number">1</span> <span class="keyword">and</span> tes[e + <span class="number">2</span>] == <span class="number">0</span>:</span><br><span class="line">            final.append(<span class="string">','</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    final.remove(<span class="string">','</span>)</span><br><span class="line">    ls = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> final]</span><br><span class="line">    ls1 = <span class="string">''</span>.join(ls)</span><br><span class="line">    print(<span class="string">'转化完成的二进制码为：'</span> + ls1)</span><br><span class="line">    F = int(ls1, <span class="number">2</span>)</span><br><span class="line">    print(<span class="string">"XN*2:    "</span>, end=<span class="string">" "</span>)</span><br><span class="line">    print(F)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">调用函数</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">s = conversion_nu() <span class="comment"># 调用</span></span><br><span class="line">h = turing_operate(s) <span class="comment"># 函数作为参数传入</span></span><br><span class="line">binary_to_metric(h)</span><br></pre></td></tr></table></figure>
+<h3 id="四．-调试，测试及运行结果"><a href="#四．-调试，测试及运行结果" class="headerlink" title="四．    调试，测试及运行结果"></a>四．    调试，测试及运行结果</h3><p>小数据测试<img src="https://img-blog.csdnimg.cn/20190320154513392.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)较大数据测试<img src="https://img-blog.csdnimg.cn/2019032015452646.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="五．-经验归纳"><a href="#五．-经验归纳" class="headerlink" title="五．    经验归纳"></a>五．    经验归纳</h3><p>本次程序设计，算法相对来说较为简单明了，实现起来不算困难，但因为自学了python，想用python 完成此次编程。由于是第一次用python写具有功能性的代码，遇到了不少困难。首先是函数间参数传入问题，c++及java中都不存在<strong>init</strong>函数（self）参数的问题，参数传入较好理解，python中此参数让人备受困扰，在查阅相关博客时还学习到python可以将类内函数作为另一函数的参数传入，在Java中只能做到函数间的相互调用。其次是python的对象函数调用，因为没有python的编程经验，此方面花了不少时间，但也学到了面对对象的方法在不同语言中的通用性及区别。</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充:"></a>补充:</h4><p>1.当python出现列表套列表时，可将里边的列表当作是外边的列表元素处理，将里边的列表剥离出来时只需要另新建变量使其等于外边列表的其所处的索引。<br>2.python函数之间传值时可能会出现值变化的情况，此时一定要注意传参顺序，和传参的数据类型。另外，python可将函数作为参数传入另一个函数，此时就需要注意函数是否被重复调用。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-N个数的最大公约数，最小公倍数求解及hankson问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/N%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%EF%BC%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0%E6%B1%82%E8%A7%A3%E5%8F%8Ahankson%E9%97%AE%E9%A2%98/"
+    >java实现最大公约数最大公倍数求解及Hankson问题</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/N%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%EF%BC%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0%E6%B1%82%E8%A7%A3%E5%8F%8Ahankson%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.071Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java%E5%9F%BA%E7%A1%80/">java基础</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="1-java实现最大公约数最大公倍数求解"><a href="#1-java实现最大公约数最大公倍数求解" class="headerlink" title="1.java实现最大公约数最大公倍数求解"></a>1.java实现最大公约数最大公倍数求解</h3><h3 id="2-hankson问题求解"><a href="#2-hankson问题求解" class="headerlink" title="2.hankson问题求解"></a>2.hankson问题求解</h3><h4 id="一．-题目要求"><a href="#一．-题目要求" class="headerlink" title="一．    题目要求"></a>一．    题目要求</h4><p>基本要求： 求N个数的最大公约数和最小公倍数。用C或C++或java或python语言实现程序解决问题。<br>          1.程序风格良好(使用自定义注释模板)<br>          2.提供友好的输入输出，并进行输入数据的正确性验证。<br>提高要求：<br>Hanks博士是BT（Bio-Tech，生物技术）领域的知名专家，他的儿子名叫Hankson。现在，刚刚放学回家的Hankson正在思考一个有趣的问题。<br>今天在课堂上，老师讲解了如何求两个正整数c1和c2的最大公约数和最小公倍数。现在Hankson认为自己已经熟练地掌握了这些知识，他开始思考一个“求公约数”和“求公倍数”之类问题的“逆问题”，这个问题是这样的：已知正整数a0,a1,b0,b1，设某未知正整数x满足：<br>1、  x和a0的最大公约数是a1；<br>2、  x和b0的最小公倍数是b1。<br>Hankson的“逆问题”就是求出满足条件的正整数x。但稍加思索之后，他发现这样的x并不唯一，甚至可能不存在。因此他转而开始考虑如何求解满足条件的x的个数。请你帮助他编程求解这个问题。<br>输入格式<br>输入第一行为一个正整数n，表示有n组输入数据。接下来的n行每行一组输入数据，为四个正整数a0，a1，b0，b1，每两个整数之间用一个空格隔开。输入数据保证a0能被a1整除，b1能被b0整除。<br>输出格式<br>输出共n行。每组输入数据的输出结果占一行，为一个整数。<br>对于每组数据：若不存在这样的x，请输出0；<br>若存在这样的x，请输出满足条件的x的个数；<br>样例输入<br>2<br>41 1 96 288<br>95 1 37 1776<br>样例输出<br>6<br>2</p>
+<h4 id="二．算法设计思路"><a href="#二．算法设计思路" class="headerlink" title="二．算法设计思路"></a>二．算法设计思路</h4><p>1．    多个数据的最大公约数和最小公倍数<br>根据两个数据的算法，采用迭代法实现多个数据的计算。先计算出前两个数的最大公约数及最小公倍数，递归代入先前定义的计算函数。从而达到计算N个的目的。<br>     2 .  hankson.通过数学推算x的取值在a0~b1间，用循环代入题目要求，达到计算x 个数的目的。</p>
+<h4 id="三．-代码实现（java）"><a href="#三．-代码实现（java）" class="headerlink" title="三．    代码实现（java）"></a>三．    代码实现（java）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 1.实现多整数最大公约数，最大公倍数求解</span></span><br><span class="line"><span class="comment"> * 2.实现hankson问题x个数的计数*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ngdc</span> </span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">static</span> <span class="keyword">int</span>  <span class="title">gcds</span> <span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//递归调用//两个数的最大公约数求解</span></span></span><br><span class="line"><span class="function">	   </span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(a%b==<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> b;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> gcds(b,a%b);</span><br><span class="line">	&#125;</span><br><span class="line">	 <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">multiple</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><span class="comment">//两个数的最小公倍数求解</span></span></span><br><span class="line"><span class="function">	 </span>&#123;</span><br><span class="line">	 <span class="keyword">return</span>(x*y/gcds(x,y));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ngcd</span><span class="params">(<span class="keyword">int</span> []a)</span><span class="comment">//n个数的最大公约数求解</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> temp=gcds(a[i],a[i+<span class="number">1</span>]);</span><br><span class="line">		i+=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">while</span>(i&lt;a.length)</span><br><span class="line">		&#123;</span><br><span class="line">			gcds(temp,a[i]);</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> temp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nlcm</span><span class="params">(<span class="keyword">int</span> []a)</span><span class="comment">//n个数的最小公倍数求解</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> temp=multiple(a[i],a[i+<span class="number">1</span>]);</span><br><span class="line">		i+=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">while</span>(i&lt;a.length)</span><br><span class="line">		&#123;</span><br><span class="line">			multiple(temp,a[i]);</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> temp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] setArray()<span class="comment">//放置数据 函数</span></span><br><span class="line">	&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"请输入您想输入数据的组数:"</span>);</span><br><span class="line">		<span class="keyword">int</span> n=sc.nextInt();</span><br><span class="line">	    <span class="keyword">if</span>(n&lt;<span class="number">1</span>)</span><br><span class="line">		&#123;System.out.println(<span class="string">"请重新输入"</span>);&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span>[][] array = <span class="keyword">new</span> <span class="keyword">int</span>[n][<span class="number">4</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">				array[i][j] = sc.nextInt();</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		sc.close();</span><br><span class="line">		<span class="keyword">return</span> array;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">judgecount</span><span class="params">(<span class="keyword">int</span> array[][])</span><span class="comment">//x个数计算函数</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> e=<span class="number">0</span>;e&lt;array.length;e++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(array[e][<span class="number">0</span>]%array[e][<span class="number">1</span>]!=<span class="number">0</span>&amp;&amp;array[e][<span class="number">3</span>]%array[e][<span class="number">2</span>]!=<span class="number">0</span>)</span><br><span class="line">        	</span><br><span class="line">				&#123;System.out.println(<span class="string">"输入非法，重新输入      （使每一行第一个数被第二个整除，第四个被第二个整除）"</span>);	&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=array[e][<span class="number">0</span>];i&lt;=array[e][<span class="number">3</span>];i++) &#123;</span><br><span class="line">        	<span class="keyword">if</span>(gcds(i,array[e][<span class="number">0</span>])==array[e][<span class="number">1</span>]&amp;&amp;multiple(i,array[e][<span class="number">2</span>])==array[e][<span class="number">3</span>])</span><br><span class="line">        &#123;count++;</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line">        System.out.println(<span class="string">"x个数    "</span>+count*<span class="number">2</span>);&#125;&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"请选择您想要的操作方式：1.N个数的最大公约数      2.Hankson"</span>);</span><br><span class="line">		<span class="keyword">int</span> s=sc.nextInt();</span><br><span class="line">		<span class="keyword">switch</span> (s) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			System.out.println(<span class="string">"请输入您想输入的数据个数N:"</span>);</span><br><span class="line">		<span class="keyword">int</span> n=sc.nextInt();</span><br><span class="line">		<span class="keyword">int</span>[] array=<span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">		<span class="keyword">if</span>(n&lt;<span class="number">2</span>)</span><br><span class="line">		&#123;System.out.println(<span class="string">"输入有误，请输入大于2的整数"</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			array[i]=sc.nextInt();</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"这N个数的最大公约数是："</span>+ngcd(array));</span><br><span class="line">		System.out.println(<span class="string">"这N个数的最小公倍数是："</span>+nlcm(array));</span><br><span class="line">		sc.close();</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			<span class="keyword">int</span> arr[][]=setArray();<span class="comment">//接收setArray()返回值</span></span><br><span class="line">			judgecount(arr);<span class="comment">//调用 x 计数函数</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="四-测试截图"><a href="#四-测试截图" class="headerlink" title="四.测试截图"></a>四.测试截图</h4><p><img src="https://img-blog.csdnimg.cn/20190322224921224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190322225017719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="五-个人总结"><a href="#五-个人总结" class="headerlink" title="五.个人总结"></a>五.个人总结</h4><p>此次程序设计基本要求算法较为简单，在上次的算法基础上变通，复用即可实现。所以差距现在代码的简洁和高效性上。提高要求中Hankson 算法将题目要求变成代码需要进行对X 的变通。经过数学归纳得出X 值所在范围后，问题得到简化。<br>虽然本学期开了java课，但用java写一个正真具有功能的代码还是第一次，本次程序设计进一步熟悉了java语法及函数之间的调用，也认识到了java语言的强大。不足之处很多，如在编码的时候经常遇到语法及算法问题，编程实践能力欠缺，时间也拖得有些长。另外，在数据的异常处理方面，也做得不够好，想用try catch 语句，但是由于还没有掌握，便放弃了。只进行了简单的异常处理，达不到完全符合要求。程序的模块化也做得不够好，争取在接下来的时间里填补空缺，下次做得更好。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Maven创建webapp骨架无法使用@WebServlet来实现注解配置解决方案" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/Maven%E5%88%9B%E5%BB%BAwebapp%E9%AA%A8%E6%9E%B6%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8@WebServlet%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+    >Maven 创建webapp骨架无法使用@WebServlet注解配置</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/Maven%E5%88%9B%E5%BB%BAwebapp%E9%AA%A8%E6%9E%B6%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8@WebServlet%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.052Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JAVA-WEB/">JAVA WEB</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="利用maven框架创建web工程"><a href="#利用maven框架创建web工程" class="headerlink" title="利用maven框架创建web工程"></a>利用maven框架创建web工程</h3><p><img src="https://img-blog.csdnimg.cn/20200108231002904.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="创建 Maven  web 工程"><br>如上图所示，在利用maven骨架创建web项目时，默认选择创建webapp:1.4版本，由于在早期的web工程中并不支持@WebServlet注解配置，甚至不支持El表达式（在web 3.0版本之后才支持），所以在写servlet 时想使用@WebServlet进行url-pattern配置是不能够完成的。</p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h4 id="1-改变web-xml文件头来更改web工程版本"><a href="#1-改变web-xml文件头来更改web工程版本" class="headerlink" title="1.改变web.xml文件头来更改web工程版本"></a>1.改变web.xml文件头来更改web工程版本</h4><ul>
+<li>找到本地仓库文件 如 ：E:\maven_repository</li>
+<li>打开创建web工程的依赖jar包             路径如下：E:\maven_repository\org\apache\maven\archetypes\maven-archetype-webapp\1.4</li>
+<li><img src="https://img-blog.csdnimg.cn/20200108232552775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>如图用压缩软件打开jar包 <h4 id="注意：不是解压缩"><a href="#注意：不是解压缩" class="headerlink" title="注意：不是解压缩"></a>注意：不是解压缩</h4><img src="https://img-blog.csdnimg.cn/20200108232932955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="修改web.xml文件"><br>修改代码如下</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee</span></span></span><br><span class="line"><span class="tag"><span class="string">                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">version</span>=<span class="string">"4.0"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">metadata-complete</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="注意一定要将matadata-complete属性改为”false”这样创建的web工程才是web-4-0"><a href="#注意一定要将matadata-complete属性改为”false”这样创建的web工程才是web-4-0" class="headerlink" title="注意一定要将matadata-complete属性改为”false”这样创建的web工程才是web-4.0"></a>注意一定要将matadata-complete属性改为”false”这样创建的web工程才是web-4.0</h4><ul>
+<li>此处代码只是一个参考，正确做法是打开TomCat安装路径找到以下文件复制粘贴到上述的jar包web.xml中</li>
+<li>Tomcat 中路径如下：D:\Tomcat9.0_Tomcat9.2\webapps\ROOT\WEB-INF</li>
+<li><img src="https://img-blog.csdnimg.cn/20200108234017118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="修改参数"><h6 id="一定注意要修改metadata-complete参数（重要的话说两遍）"><a href="#一定注意要修改metadata-complete参数（重要的话说两遍）" class="headerlink" title="一定注意要修改metadata-complete参数（重要的话说两遍）"></a>一定注意要修改metadata-complete参数（重要的话说两遍）</h6>这样就完成了webapp项目版本的升级</li>
+</ul>
+<h4 id="2-创建web-4-0工程后实现-WebServlet注解配置"><a href="#2-创建web-4-0工程后实现-WebServlet注解配置" class="headerlink" title="2.创建web-4.0工程后实现@WebServlet注解配置"></a>2.创建web-4.0工程后实现@WebServlet注解配置</h4><h6 id="要实现maven-工程的Servlet编写，首先要在pom-xml中使用来导入依赖，代码如下："><a href="#要实现maven-工程的Servlet编写，首先要在pom-xml中使用来导入依赖，代码如下：" class="headerlink" title="要实现maven 工程的Servlet编写，首先要在pom.xml中使用来导入依赖，代码如下："></a>要实现maven 工程的Servlet编写，首先要在pom.xml中使用<dependency></dependency>来导入依赖，代码如下：</h6><p>servlet -api 依赖有代码中所示的两种版本，已注释的版本不支持@WebServlet注释配解 请务必使用下边未加注释的版本，另外注意在 <version>3.1.0</version>后加上 <scope>provided</scope>标签，不加此标签也会导致注解配置不能使用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--    &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      &lt;groupId&gt;javax.servlet&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      &lt;version&gt;2.5&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    &lt;/dependency&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>进行上述更改后maven创建的web项目在可正常使用@WebServlet进行注释配解。 </p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Web/" rel="tag">Java Web</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Linux 文件目录及常用(简单)命令" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/Linux%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8(%E7%AE%80%E5%8D%95)%E5%91%BD%E4%BB%A4/"
+    >Linux文件目录及常用命令</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/Linux%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8(%E7%AE%80%E5%8D%95)%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.034Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux-%E5%85%A5%E9%97%A8/">Linux 入门</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="1-1文件和目录简介"><a href="#1-1文件和目录简介" class="headerlink" title="1.1文件和目录简介"></a>1.1文件和目录简介</h3><p><strong>Linux和windows 文件存储方式不同，Windows有多个根目录（/c/d/e/f）linux 只有一个根目录<br>Linux 根目录： 文件–》 其他–》计算机</strong></p>
+<p><strong>根目录：</strong></p>
+<ol>
+<li>/bin 二进制文件</li>
+<li>/home 用户目录</li>
+<li>/home/xxx(user) 用户家目录</li>
+<li>/etc 系统配置文件目录</li>
+<li>/root 超级管理员的目录</li>
+</ol>
+<h3 id="1-2-Linux终端命令格式"><a href="#1-2-Linux终端命令格式" class="headerlink" title="1.2 Linux终端命令格式"></a>1.2 Linux终端命令格式</h3><p><strong>终端</strong>：软件控制台，在终端输入命令可快速操作计算机<br>终端命令格式： <em>命令 [-选项] [-参数]</em></p>
+<h5 id="查看帮助的两种方式"><a href="#查看帮助的两种方式" class="headerlink" title="查看帮助的两种方式"></a>查看帮助的两种方式</h5><p><strong>（1）.man 命令</strong><br>  【enter】 换行<br>  【空格】 翻页<br>      f - 下一页<br>    b - 上一页<br>    q -  退出<br><strong>（2）.help</strong><br>    命令 –help</p>
+<h3 id="1-3-常用命令—-显示文件及目录"><a href="#1-3-常用命令—-显示文件及目录" class="headerlink" title="1.3 常用命令— 显示文件及目录"></a>1.3 常用命令— 显示文件及目录</h3><p>*pwd 显示当前所在的路径<br>*tree 以树状列表方式显示文件夹内容<br>(1)tree 当前目录<br>(2)tree aaa[指定目录]<br>*ls 一列表方式显示 文件夹内容<br> ls -a 显示所有文件（包含隐藏文件）</p>
+<h5 id="1-3-1显示文件详细信息"><a href="#1-3-1显示文件详细信息" class="headerlink" title="1.3.1显示文件详细信息"></a>1.3.1显示文件详细信息</h5><p><strong>ls两个选项</strong><br>-l 以详细信息的方式显示列表内容<br>-h 以更加人性化的方式显示文件夹内容（文件大小 k MB..）</p>
+<h5 id="1-3-2-切换目录"><a href="#1-3-2-切换目录" class="headerlink" title="1.3.2 切换目录"></a>1.3.2 切换目录</h5><p>（1）.在图形界面进入该文件目录，鼠标右击显示复选框，选择在终端打开即可进入该目录下<br><img src="https://img-blog.csdnimg.cn/20190719205857200.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（2）cd 命令，切换工作目录<br>    用法：<br>    cd 路径   切换到指定路径<br>    cd 回到家目录<br>    cd ~ 回到家目录<br>    cd . 当前目录<br>    cd .. 上级目录<br>    cd - 上次目录</p>
+<h3 id="1-4-常用命令—创建文件和文件夹"><a href="#1-4-常用命令—创建文件和文件夹" class="headerlink" title="1.4 常用命令—创建文件和文件夹"></a>1.4 常用命令—创建文件和文件夹</h3><ul>
+<li>mkdir 创建目录 ，递归创建 添加 -p 选项</li>
+<li>touch 创建一个文件：touch 文件名 </li>
+<li>touch 创建多个文件：touch  filename1 filename2</li>
+<li>gedit  用来打开一个文件并进行编辑<br>（1）.打开一个文件后，终端进入等待状态<br>（2）.可以同时编辑多个文件 gedit  filename1 filename2</li>
+</ul>
+<h5 id="1-4-1-常用命令-删除文件和目录"><a href="#1-4-1-常用命令-删除文件和目录" class="headerlink" title="1.4.1 常用命令- 删除文件和目录"></a>1.4.1 常用命令- 删除文件和目录</h5><ul>
+<li>rm -&gt;remove<br>删除文件或者目录<br>删除文件： rm filename</li>
+</ul>
+<p>此命令提供两种选项<br> -i 以交互模式删除 （提示是否确认删除）<br> -f 强制删除不提示<br>删除文件夹 rm -r filename 递归删除目录中的内容 </p>
+<h5 id="1-4-2-常用命令-文件拷贝"><a href="#1-4-2-常用命令-文件拷贝" class="headerlink" title="1.4.2 常用命令-文件拷贝"></a>1.4.2 常用命令-文件拷贝</h5><p>cp -&gt;copy<br>用来拷贝文件或目录<br>拷贝文件 ： cp 原路径 目标路径<br>如： cp ./Javascript/demo.txt  ./java/demo2.txt<br>该命令提供如下选项<br>    -i 交互模式拷贝<br>    -f 强制覆盖不提示<br>    -v 显示拷贝过程<br>    -a 拷贝原有属性</p>
+<p><strong>·</strong>拷贝目录 cp -r 源路径 目标路径</p>
+<h5 id="1-4-3-常用命令-移动"><a href="#1-4-3-常用命令-移动" class="headerlink" title="1.4.3 常用命令-移动"></a>1.4.3 常用命令-移动</h5><p>mv -&gt;move<br><strong>1.移动文件或文件夹</strong><br>  mv  源路径 目标路径<br>  选项可选如下：<br>-i 交互方式进行文件移动<br>-f 强制覆盖不提示<br>-v 显示移动过程<br>注意：移动文件夹不需要加 -r 选项<br><strong>2.重命名文件及文件夹</strong><br>重命名： 在一个目录下移动才能进行重命名<br>mv 旧文件名 新文件名</p>
+<h3 id="1-5-常用命令-其他"><a href="#1-5-常用命令-其他" class="headerlink" title="1.5 常用命令-其他"></a>1.5 常用命令-其他</h3><p><strong>1.    clear</strong><br>清除当前终端显示内容  如果你想秀操作的话 使用快捷键   【ctrl】+【l】<br><strong>2.    【Tab】</strong><br>自动补全文件夹或者文件名<br><strong><em>注意：</em></strong>当在当前文件夹下有相同开头文件名时，补全功能无法实现，此时按两下Tab 系统显示当前文件夹下的所有以所写命令开始的文件名<br><strong>3.  which</strong><br> 查看某个命令所在的位置<br>如： which gedit<br><strong>4. 终止指令的执行</strong><br>【ctrl】+【c】<br><strong>5.终端字体的大小调整</strong><br>放大： ctrl +shift+=<br>缩小： ctrl+ - </p>
+<h3 id="1-6-常用命令-日历日期"><a href="#1-6-常用命令-日历日期" class="headerlink" title="1.6 常用命令-日历日期"></a>1.6 常用命令-日历日期</h3><h5 id="cal-查看日历"><a href="#cal-查看日历" class="headerlink" title="cal 查看日历"></a>cal 查看日历</h5><p>cal  -3 查看上月，当前月，下一月<br>cal  -y 显示当年的日历<br>cal  -j 以一年中第—天的形式显示日历<br>cal  + 具体年份 显示所写年份日历</p>
+<h5 id="date-查看日期时间"><a href="#date-查看日期时间" class="headerlink" title="date 查看日期时间"></a>date 查看日期时间</h5><p>date  显示当前的年月日时分秒</p>
+<h5 id="格式化显示"><a href="#格式化显示" class="headerlink" title="格式化显示"></a>格式化显示</h5><p>date ”+%Y”  输出年份<br>date ”+%m”  输出月份<br>date ”+%d”    输出天<br>date ”+%H”    输出时<br>date ”+%M”    输出分<br>date ”+%S”    输出秒<br>date ”+%F”    格式化输出 如2019-7-19<br>date ”+%T”   格式化输出 如19：56：21</p>
+<h3 id="1-7-常用命令-查看历史指令"><a href="#1-7-常用命令-查看历史指令" class="headerlink" title="1.7 常用命令-查看历史指令"></a>1.7 常用命令-查看历史指令</h3><ol>
+<li><p>history  查看当前用户服务器所有历史指令</p>
+</li>
+<li><p>history  数量 显示一定数量的历史指令</p>
+</li>
+<li><p>！历史指令编号 执行该条历史指令</p>
+<p><strong><em>历史指令保存在~/.bash_history 文件中</em></strong></p>
+</li>
+</ol>
+<h3 id="1-8常用命令-文件查看（cat-more）"><a href="#1-8常用命令-文件查看（cat-more）" class="headerlink" title="1.8常用命令-文件查看（cat ,more）"></a>1.8常用命令-文件查看（cat ,more）</h3><h5 id="·cat-查看文件或连接文件"><a href="#·cat-查看文件或连接文件" class="headerlink" title="·cat 查看文件或连接文件"></a><strong>·cat 查看文件或连接文件</strong></h5><p><strong>| 1.查看文件</strong><br>cat 文件名<br>选项：<br>-n 查看文件时，对每一行进行编号<br>-b 非空行进行编号<br>-s 连续两行以上的空行，只显示一行<br><strong>| 2.连接文件，把两个文件合并到 一起进行输出</strong><br>cat filename1 filename2</p>
+<h5 id="·more-用来分屏查看文件内容"><a href="#·more-用来分屏查看文件内容" class="headerlink" title="·more 用来分屏查看文件内容"></a><strong>·more 用来分屏查看文件内容</strong></h5><p><strong>选项：</strong><br>+num 从第num行开始查看文件 如：more ./demo.txt +20<br>-p 先清屏，再查看文件<br>-s 连续两行以上的空行，只显示一行<br><strong>快捷键：</strong><br>【enter】查看下一行<br>【空格】查看下一屏<br>Ctrl + f 查看下一屏<br>Ctrl + b 查看上一屏<br>q 退出</p>
+<h3 id="1-9-常用命令-数据流-、管道"><a href="#1-9-常用命令-数据流-、管道" class="headerlink" title="1.9 常用命令-数据流 、管道"></a>1.9 常用命令-数据流 、管道</h3><p><img src="https://img-blog.csdnimg.cn/20190721130542847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>·数据流</strong></p>
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+<li>标准的错误输入输出流</li>
+</ul>
+<p><strong>·重定向：改变数据流向（一般定向到文件中）</strong></p>
+<ol>
+<li><blockquote>
+<p>重定向</p>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<p>以追加的方式重定向</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<p><strong>·管道</strong></p>
+<ul>
+<li></li>
+<li>| 指令1 |指令2     ps:指令1必须要有输出</li>
+</ul>
+<p><strong>如： touch demo.txt |more 因为指令1无输出，所以该管道使用错误</strong></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-linux 常用指令（续）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/linux%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89/"
+    >Linux常用指令（续）</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/linux%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.017Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux-%E5%85%A5%E9%97%A8/">Linux 入门</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="2-0-常用命令-建立链接"><a href="#2-0-常用命令-建立链接" class="headerlink" title="2.0 常用命令- 建立链接"></a>2.0 常用命令- 建立链接</h3><h5 id="·Linux-中链接文件有两种：软链接，硬链接"><a href="#·Linux-中链接文件有两种：软链接，硬链接" class="headerlink" title="·Linux 中链接文件有两种：软链接，硬链接"></a>·Linux 中链接文件有两种：软链接，硬链接</h5><p><strong>··软链接： 相当于快捷方式，通过软链接可以修改源文件的内容</strong><br><strong><em>ln -s 源文件 链接文件</em></strong></p>
+<p>删除软链接，不影响源文件<br>删除源文件，软链接失效<br><strong>··硬链接： 一个文件有多个名字，通过硬链接可以修改源文件的内容。</strong><br><strong><em>ln 源文件 链接文件</em></strong></p>
+<p>删除源文件，如果文件还有多个硬链接，则无影响</p>
+<p><strong>软硬链接区别：</strong><br>    ·软链接可以指向 一个不存在的文件，硬链接不可以<br>·可以对目录创建软链接，而不能对目录创建硬链接<br><img src="https://img-blog.csdnimg.cn/20190721131039703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-1-常用命令-文件搜索"><a href="#2-1-常用命令-文件搜索" class="headerlink" title="2.1 常用命令- 文件搜索"></a>2.1 常用命令- 文件搜索</h3><p><strong>·在文本内部搜索 grep</strong><br>    <strong><em>grep  ‘搜索内容’  文件路径</em></strong><br>        <img src="https://img-blog.csdnimg.cn/20190721131057803.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>        <strong>grep ‘teacher’ ./test.txt  即搜索文本中与‘teacher’相关的行 ，关键字用红字标出</strong></p>
+<p><strong>grep 内部搜索</strong><br>            <strong>选项：</strong>-n 查看结果的行数<br>                             -i 忽略大小写搜索<br>                             -v 取反搜索，搜索不是关键词范围的其他所有行<br><strong>·grep 正则搜索</strong><br>            grep ‘^a’ 文件路径      【搜索以开头的行】</p>
+<p><strong>·在（linux）计算机中搜索文件 find</strong><br>            <strong><em>find 目标文件目录 选项 条件</em></strong> </p>
+<p><img src="https://img-blog.csdnimg.cn/201907211311545.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2-常用命令-归档和压缩"><a href="#2-2-常用命令-归档和压缩" class="headerlink" title="2.2 常用命令-归档和压缩"></a>2.2 常用命令-归档和压缩</h3><p><strong>·归档和解档</strong></p>
+<ul>
+<li><p>*tar -cvf 归档的文件名.tar 文件1 文件2</p>
+</li>
+<li><p>tar -xvf 档案文件名*</p>
+<p><strong><em>选项f必须放到最后</em></strong></p>
+</li>
+</ul>
+<h4 id="·归档-压缩-和-解压-解档"><a href="#·归档-压缩-和-解压-解档" class="headerlink" title="·归档+压缩 和 解压+解档"></a>·归档+压缩 和 解压+解档</h4><p><strong>·归档+压缩</strong><br>         tar -zcvf 归档的文件名.tar.gz 文件1 文件2<br><strong>·解档+解压</strong><br>tar -zcvf 归档的文件名.tar.gz<br>如果需要指定解档的目录：tar -zxvf 归档的文件名.tar.gc -C 要解压解档到的目录</p>
+<h3 id="2-2-1-常用命令-归档和压缩"><a href="#2-2-1-常用命令-归档和压缩" class="headerlink" title="2.2.1 常用命令-归档和压缩"></a>2.2.1 常用命令-归档和压缩</h3><p><strong>·zip 压缩</strong><br>压缩目录：zip -r xxx.zip<br><strong>·unzip 解压缩</strong><br>unzip xxx.zip</p>
+<h3 id="2-3-常用命令-文件权限"><a href="#2-3-常用命令-文件权限" class="headerlink" title="2.3 常用命令- 文件权限"></a>2.3 常用命令- 文件权限</h3><p><img src="https://img-blog.csdnimg.cn/20190721131236103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>·文件权限的构成</strong><br>九个字母，三组 （权限拥有者 u -&gt;user，权限组 g-&gt;group ,其他用户权限o-other）  所有用户权限 a</p>
+<p>每一组权限可选的权限有：</p>
+<p><em>r、w、x 具体权限如上图</em></p>
+<h3 id="2-4-常用命令-权限修改"><a href="#2-4-常用命令-权限修改" class="headerlink" title="2.4 常用命令- 权限修改"></a>2.4 常用命令- 权限修改</h3><h5 id="①字母表示法"><a href="#①字母表示法" class="headerlink" title="①字母表示法"></a>①字母表示法</h5><ul>
+<li>·权限修改指令  chmod</li>
+<li>用户： u g o a</li>
+<li>权限设置 ： +（增加）、-（撤销）、=（设置）</li>
+<li>具体权限： r/w/x</li>
+<li>用法： chmod 用户 + 具体权限 文件名</li>
+</ul>
+<p><em>如： chmod u+’r’ test.txt 即为文件拥有者增加文件可读权限<br>chmod u=rwx 1.txt</em></p>
+<h5 id="②数字表示法"><a href="#②数字表示法" class="headerlink" title="②数字表示法"></a>②数字表示法</h5><p><img src="https://img-blog.csdnimg.cn/20190721131301812.png" alt="在这里插入图片描述"><br><strong>三位权限数字 ：第一位拥有者 第二位同组用户 第三位 其他用户</strong></p>
+<p><em>chomd 权限数字 文件路径</em> </p>
+<h3 id="2-4-常用命令-用户管理"><a href="#2-4-常用命令-用户管理" class="headerlink" title="2.4 常用命令-用户管理"></a>2.4 常用命令-用户管理</h3><p><strong>·切换用户</strong><br><strong><em>临时：</em></strong> sudo  命令<br><strong><em>永久：</em></strong> su 用户名 输入用户名对应的密码</p>
+<ol>
+<li>sudo -s 输入当前用户的密码</li>
+<li>passwd 修改密码</li>
+<li>passwd  【修改当前用户的密码】</li>
+<li>passwd  <strong><strong>【修改</strong></strong>用户的密码】</li>
+<li>exit<pre><code>exit 如果当前没有用户在线，直接退出终端
+如果多次切换用户，退出到上次登录的用户</code></pre><strong>who</strong><br>用来查看当前系统的登录用户<br><em>选项：</em> -q  统计用户数量<pre><code>-u  显示最后一次操作距离现在的时间</code></pre></li>
+</ol>
+<h3 id="2-5-常用命令-关机-、重启"><a href="#2-5-常用命令-关机-、重启" class="headerlink" title="2.5 常用命令- 关机 、重启"></a>2.5 常用命令- 关机 、重启</h3><p><img src="https://img-blog.csdnimg.cn/20190721131323483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-6-常用命令-软件安装与卸载"><a href="#2-6-常用命令-软件安装与卸载" class="headerlink" title="2.6 常用命令- 软件安装与卸载"></a>2.6 常用命令- 软件安装与卸载</h3><p> <strong>Linux 软件安装三种方式</strong></p>
+<p>源代码包安装  deb 包安装  apt-get</p>
+<p><em>源代码包安装需要先编译后安装，较为麻烦<br>deb包安装需要解决软件依赖问题<br>apt-get 方式较为省事，且安装一般不会出现问题，下做介绍</em></p>
+<h5 id="apt-get-方式-安装"><a href="#apt-get-方式-安装" class="headerlink" title="apt-get 方式 安装"></a><strong>apt-get 方式 安装</strong></h5><pre><code>**·配置软件镜像源  修改/etc/apt/source.list**</code></pre><p><em>注意： 在使用 gedit /etc/apt/source.list 命令打开配置文件时，通常情况下会出现权限不够无法修改的情况，此时临时或永久提升权限可修改保存</em><br><em>gedit 文本编辑只在Ubuntu 发行版中有，在centOS中没有</em></p>
+<p><strong>命令：</strong> </p>
+<ul>
+<li>sudo gedit /etc/apt/source.list</li>
+<li>更新软件源 sudo  apt-get update</li>
+<li>安装软件  sudo apt-get install 软件包名</li>
+<li>卸载软件 sudo apt-get remove 软件包名称</li>
+</ul>
+<h3 id="2-7-ssh-远程登录"><a href="#2-7-ssh-远程登录" class="headerlink" title="2.7 ssh 远程登录"></a>2.7 ssh 远程登录</h3><p><strong>服务器端安装ssh server</strong><br>sudo apt-get install openssh-server<br><strong>·客户端登录</strong></p>
+<p>ssh 服务器用户名@服务器地址<br>如 ssh demo @192.168.150.112   –&gt;123</p>
+<h3 id="2-8-编辑器-vim介绍及使用"><a href="#2-8-编辑器-vim介绍及使用" class="headerlink" title="2.8 编辑器 vim介绍及使用"></a>2.8 编辑器 vim介绍及使用</h3><h5 id="三种模式："><a href="#三种模式：" class="headerlink" title="三种模式："></a><strong>三种模式：</strong></h5><ol>
+<li>命令模式（移动光标，复制，删除）</li>
+<li>输入模式（编辑文件）</li>
+<li>末行模式（保存文件，查找替换）</li>
+</ol>
+<h5 id="三种模式转换："><a href="#三种模式转换：" class="headerlink" title="三种模式转换："></a>三种模式转换：</h5><p>打开文件默认是命令模式——【a\i\o】-&gt;输入模式——【：】-&gt;末行模式</p>
+<h5 id="vim-操作"><a href="#vim-操作" class="headerlink" title="vim 操作"></a><strong>vim 操作</strong></h5><p>（1）.创建文件 ：vi 文件名——&gt; i 进入编辑模式—&gt;编辑模式—&gt;【esc】到命令模式—&gt;【：】进入末行模式—&gt;wq保存并退出<br>（2）.进入输入模式<br>             - i 光标前插入  I行首插入<br>             - a 光标后 行尾<br>            - o 光标下一行产生新行 O 光标上一行产生新行</p>
+<p>（3）.进入命令模式<br>          在任何状态下【esc】</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Linux  入门（填坑实践，你想要的都在这）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/Linux%20%20%E5%85%A5%E9%97%A8%EF%BC%88%E5%A1%AB%E5%9D%91%E5%AE%9E%E8%B7%B5%EF%BC%8C%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%EF%BC%89/"
+    >Linux踩坑实践</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/Linux%20%20%E5%85%A5%E9%97%A8%EF%BC%88%E5%A1%AB%E5%9D%91%E5%AE%9E%E8%B7%B5%EF%BC%8C%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%EF%BC%89/" class="article-date">
+  <time datetime="2020-03-04T11:24:32.999Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux-%E5%85%A5%E9%97%A8/">Linux 入门</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="linux-常见发行版"><a href="#linux-常见发行版" class="headerlink" title="linux 常见发行版"></a>linux 常见发行版</h3><ul>
+<li><strong>CentOS</strong></li>
+<li><strong>redHat</strong></li>
+<li><strong>ubuntu</strong></li>
+<li><pre><code>本Blog 操作均以Ubuntu 18.04 -64 实践
+附上百度云镜像链接（VMware,Ubuntu iso）：
+链接：https://pan.baidu.com/s/1qLxVvxh5M2AfhWkknv9jIQ     
+提取码：oe0t </code></pre></li>
+</ul>
+<h3 id="一．Ubuntu-图形界面简介"><a href="#一．Ubuntu-图形界面简介" class="headerlink" title="一．Ubuntu 图形界面简介"></a>一．Ubuntu 图形界面简介</h3><p><img src="https://img-blog.csdnimg.cn/20190722151202767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="二．Ubuntu-中文输入法及系统语言设置"><a href="#二．Ubuntu-中文输入法及系统语言设置" class="headerlink" title="二．Ubuntu 中文输入法及系统语言设置"></a>二．Ubuntu 中文输入法及系统语言设置</h3><p>– Ubuntu 系统语言环境设置（VMware默认安装为英文），此处设置为中文。<br>附链接：<br><a href="https://blog.csdn.net/gys_20153235/article/details/80490880" target="_blank" rel="noopener">https://blog.csdn.net/gys_20153235/article/details/80490880</a><br>– 搜狗拼音安装(选装)<br>由于搜狗输入法安装需要中文输入法框架fcitx 支持，而默认fcitx 在系统中没有安装，下面给出命令行安装方法</p>
+<p>sudo add-apt-repository ppa:fcitx-team/nightly<br>Sudo apt-get update<br>Sudo apt-get install fcitx<br>以下是baidu 提供的安装方法</p>
+<p><a href="https://jingyan.baidu.com/article/b7001fe1a7d2c60e7382dd7c.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/b7001fe1a7d2c60e7382dd7c.html</a></p>
+<h3 id="三．常用软件安装"><a href="#三．常用软件安装" class="headerlink" title="三．常用软件安装"></a>三．常用软件安装</h3><h4 id="1-编程工具"><a href="#1-编程工具" class="headerlink" title="(1).编程工具"></a>(1).编程工具</h4><p><strong>–java</strong></p>
+<h5 id="lt-1-gt-安装jdk"><a href="#lt-1-gt-安装jdk" class="headerlink" title="&lt;1&gt; 安装jdk"></a>&lt;1&gt; 安装jdk</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install default-jre    y</span><br><span class="line">apt-cache search openjdk</span><br><span class="line">sudo apt-get install openjdk-8-jdk</span><br></pre></td></tr></table></figure>
+<h5 id="lt-2-gt-安装代码工具"><a href="#lt-2-gt-安装代码工具" class="headerlink" title="&lt;2&gt; 安装代码工具"></a>&lt;2&gt; 安装代码工具</h5><p>Java 编写代码主流使用eclipse 和 Idea，下面分别做安装方法介绍</p>
+<p><strong>·eclipse安装</strong></p>
+<p>①　打开终端，输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install eclipse</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2019072215163845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>②　输入y/Y  确认继续<br><img src="https://img-blog.csdnimg.cn/20190722151736202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>③　等待解包完成后可直接打开运行</p>
+<p><strong>·IDEA 安装</strong><br>&lt;1&gt;.搜索Idea</p>
+<p>进入官网，选择linux版本下载</p>
+<p><img src="https://img-blog.csdnimg.cn/20190722151835925.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>&lt;2&gt;.    下载完成后解压提取到某个文件夹下，利用图形化界面文件管理器进入文件bin目录下，如<br>Downloads/idea-IC-191.7479.19/bin<br><img src="https://img-blog.csdnimg.cn/2019072215190844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在如上所示的文件目录下单击鼠标右键 ，选择在终端打开</p>
+<p>&lt;3&gt;.进入该目录下终端后执行如下指令</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod a=+rx bin/idea.sh     --提升脚本文件读权限和可执行权限</span><br><span class="line">sh idea.sh  --执行脚本文件</span><br></pre></td></tr></table></figure>
+<p>&lt;4&gt;.安装<br>如果前边一切进行顺利，此时出现安装窗口。<br>前边步骤相对较为简单，不做过多赘述，值得注意的是下图的窗口，用于选择是否要将IntelliJ IDEA与系统应用程序菜单集成。在几乎每一种情况下，答案是肯定的，否则，为了启动IntelliJ IDEA，我们必须手动执行idea.sh脚本，而这并不是最舒适的方式。因此选择【Next launch Script】创建启动器脚本。<br><img src="https://img-blog.csdnimg.cn/20190722152045283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>&lt;5&gt;.在菜单搜索框中搜索idea,出现idae图标，添加到收藏夹，即可快捷启动。<br><img src="https://img-blog.csdnimg.cn/20190722152106825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>–Python</strong><br>因为Ubuntu系统 预装了Python3 Python2<br><img src="https://img-blog.csdnimg.cn/20190722152204324.png" alt="在这里插入图片描述"><br>所以不需要自己下载安装<br>Python 代码编写通常用pycharm和 idle(简单代码编写)，下提供两者的安装方式</p>
+<p><strong>&lt;1&gt;idle</strong><br>在终端执行命令  <code>sudo apt-get install idle</code><br><img src="https://img-blog.csdnimg.cn/20190722152304529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong><pycharm></strong><br>因为该软件发行商与idea为同一公司，所以安装步骤及其相似</p>
+<ol>
+<li>下载完成后解压提取到某个文件夹下，利用图形化界面文件管理器进入文件bin目录下，如<br>Downloads/pycharm-community-2019.1.3/bin<br>在如上所示的文件目录下单击鼠标右键 ，选择在终端打开<br><img src="https://img-blog.csdnimg.cn/2019072215235446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>在终端输入如下指令进行安装<br><code>chmod 555 pycharm.sh</code>    ——为pycharm.sh 脚本文件提升读和可执行权限<br><code>sh pycharm.sh</code>                 ——执行该命令后pycharm进入安装窗口，同样选择是否创建启动脚本是选择是【Next launch script】以创建快捷启动方式</li>
+</ol>
+<h4 id="2-浏览器—三行命令安装chome"><a href="#2-浏览器—三行命令安装chome" class="headerlink" title="(2)浏览器—三行命令安装chome"></a>(2)浏览器—三行命令安装chome</h4><pre><code>Wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ sudo dpkg -i google-chrome*
+ sudo apt-get install -f</code></pre><h3 id="四．解决linux系统自带火狐浏览器无法播放在线音乐问题"><a href="#四．解决linux系统自带火狐浏览器无法播放在线音乐问题" class="headerlink" title="四．解决linux系统自带火狐浏览器无法播放在线音乐问题"></a>四．解决linux系统自带火狐浏览器无法播放在线音乐问题</h3><pre><code>众所周知Tecent 巴巴一向无视linux, 理所当然，也就没有QQ music for linux 一说，当然其他平台也 好不到哪里去</code></pre><p>那么想听音乐就只能网页在线播放喽，可是当音乐播放键||时，你会绝望的发现并没有声音，试了多次无果，于是转战chome ,就会发现geogle 还是有点东西，播放在线QQ music 毫无压力，回到Firefox，拿出开发工具查看控制台，看到原来是解码器不支持解码AAC,没办法，装一个喽。<br>控制台输入如下命令可安装大多数音频解码：</p>
+<pre><code>sudo apt-get install ubuntu-restricted-extras</code></pre><p>安装后重启火狐，问题解决。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
 
     </footer>
 
@@ -153,6 +1025,11 @@
   </article>
   
 
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
   
 </section>
 </div>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    python 实现图灵机XN_2 模拟 |  Yu han の BLog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Yu han の BLog" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-python 实现图灵机 XN_2 模拟" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  python 实现图灵机XN_2 模拟
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/python%20%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%81%B5%E6%9C%BA%20XN_2%20%E6%A8%A1%E6%8B%9F/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.097Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python-%E5%BA%94%E7%94%A8/">Python 应用</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">988字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">4分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="一．-题目分析"><a href="#一．-题目分析" class="headerlink" title="一．    题目分析"></a>一．    题目分析</h3><p>通过编程模拟某一图灵机的工作过程，掌握图灵机的概念与基本结构。将图灵机内态变化及指令输出用高级语言实现逐行输出。从而理解图灵机的编码方式。</p>
+<h3 id="二．-算法构造"><a href="#二．-算法构造" class="headerlink" title="二．    算法构造"></a>二．    算法构造</h3><ol>
+<li>实现输入十进制整数的二进制编码，并将其转化为二进制扩展码。</li>
+<li>选择图灵机（XN*2），将1转化过来的二进制扩展码用if（elif）语句实现判断后的图灵机指令操作。</li>
+<li>Show_binary函数对2中turing_operate操作后的二进制码（字符串）进行输出。</li>
+<li>调用方法，实现完整功能</li>
+</ol>
+<h3 id="三．-算法实现"><a href="#三．-算法实现" class="headerlink" title="三．    算法实现"></a>三．    算法实现</h3><h5 id="Python（Pycharm）编译"><a href="#Python（Pycharm）编译" class="headerlink" title="Python（Pycharm）编译"></a>Python（Pycharm）编译</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conversion_nu</span><span class="params">()</span>:</span></span><br><span class="line">    decimalism = int(input(<span class="string">"请输入您的整数："</span>))</span><br><span class="line">    binary = bin(decimalism).replace(<span class="string">'0b'</span>, <span class="string">''</span>)  <span class="comment"># bin 函数转化十进制</span></span><br><span class="line">    print(<span class="string">"转化为二进制为："</span>+binary)</span><br><span class="line">    </span><br><span class="line">    tensor = list(map(int, binary)) <span class="comment"># 将二进制转为列表</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> tensor[<span class="number">0</span>] == <span class="string">'0'</span>: <span class="comment"># 判断输入值0时的情况</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        new_tensor = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>] <span class="comment"># 任何非零数据转化二进制第一位010</span></span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> tensor[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> a == <span class="number">1</span>:</span><br><span class="line">                new_tensor.append(<span class="number">10</span>) <span class="comment"># 对第二位后的值进行操作，将操作值存在new_tensor中</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> a == <span class="number">0</span>:</span><br><span class="line">                    new_tensor.append(<span class="number">0</span>)</span><br><span class="line">        new_tensor.append(<span class="number">110</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> new_tensor <span class="comment"># 返回值作为turing_operate 的参数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''turing machine operation</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">turing_operate</span><span class="params">(new_tensor)</span>:</span></span><br><span class="line"></span><br><span class="line">    tend = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> new_tensor]</span><br><span class="line">    tend.append(<span class="string">"0"</span>) <span class="comment"># 内态补位操作</span></span><br><span class="line">    tend.append(<span class="string">'0'</span>)</span><br><span class="line"></span><br><span class="line">    a = <span class="string">''</span>.join(tend)</span><br><span class="line">    eve_tend = list(a)  <span class="comment"># 转化为单值字符</span></span><br><span class="line"></span><br><span class="line">    state = <span class="string">'0'</span> <span class="comment"># 初始化内态</span></span><br><span class="line">    arr = []</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    图灵机操作</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(eve_tend)):</span><br><span class="line">        print(<span class="string">"第"</span> + str(i+<span class="number">1</span>) + <span class="string">"步"</span>)</span><br><span class="line">        <span class="keyword">if</span> state == <span class="string">'0 '</span><span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'0'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'0'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'0'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'1'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'1'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'0'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'1'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'0'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'1'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'1'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'1'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'10'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'0'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'10'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'11'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'1'</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="string">'11'</span> <span class="keyword">and</span> eve_tend[i] == <span class="string">'0'</span>:</span><br><span class="line"></span><br><span class="line">            state = <span class="string">'0'</span></span><br><span class="line">            eve_tend[i] = <span class="string">'1'</span></span><br><span class="line"></span><br><span class="line">            arr.append(eve_tend)</span><br><span class="line">        carry = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> eve_tend] <span class="comment"># 聚合操作后的列表</span></span><br><span class="line">        temp = <span class="string">''</span>.join(carry)</span><br><span class="line">        print(<span class="string">"当前内态: "</span>+state+<span class="string">"    "</span>+<span class="string">"当前扩展码: "</span>+temp)</span><br><span class="line">    print(<span class="string">"stop"</span>)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_to_metric</span><span class="params">(arr)</span>:</span></span><br><span class="line">    metric = arr[<span class="number">0</span>]</span><br><span class="line">    tes = [int(i) <span class="keyword">for</span> i <span class="keyword">in</span> metric]</span><br><span class="line">    <span class="comment">#print(tes)</span></span><br><span class="line">    final = []</span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(<span class="number">0</span>, len(tes)):</span><br><span class="line">        <span class="keyword">if</span> tes[e] == <span class="number">1</span> <span class="keyword">and</span> tes[e + <span class="number">1</span>] == <span class="number">0</span>:</span><br><span class="line">            final.append(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> (e + <span class="number">1</span>) &lt; len(tes) <span class="keyword">and</span> tes[e] == <span class="number">0</span> <span class="keyword">and</span> tes[e + <span class="number">1</span>] == <span class="number">0</span>:</span><br><span class="line">            final.append(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> tes[e] == <span class="number">1</span> <span class="keyword">and</span> tes[e + <span class="number">1</span>] == <span class="number">1</span> <span class="keyword">and</span> tes[e + <span class="number">2</span>] == <span class="number">0</span>:</span><br><span class="line">            final.append(<span class="string">','</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    final.remove(<span class="string">','</span>)</span><br><span class="line">    ls = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> final]</span><br><span class="line">    ls1 = <span class="string">''</span>.join(ls)</span><br><span class="line">    print(<span class="string">'转化完成的二进制码为：'</span> + ls1)</span><br><span class="line">    F = int(ls1, <span class="number">2</span>)</span><br><span class="line">    print(<span class="string">"XN*2:    "</span>, end=<span class="string">" "</span>)</span><br><span class="line">    print(F)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">调用函数</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">s = conversion_nu() <span class="comment"># 调用</span></span><br><span class="line">h = turing_operate(s) <span class="comment"># 函数作为参数传入</span></span><br><span class="line">binary_to_metric(h)</span><br></pre></td></tr></table></figure>
+<h3 id="四．-调试，测试及运行结果"><a href="#四．-调试，测试及运行结果" class="headerlink" title="四．    调试，测试及运行结果"></a>四．    调试，测试及运行结果</h3><p>小数据测试<img src="https://img-blog.csdnimg.cn/20190320154513392.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)较大数据测试<img src="https://img-blog.csdnimg.cn/2019032015452646.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="五．-经验归纳"><a href="#五．-经验归纳" class="headerlink" title="五．    经验归纳"></a>五．    经验归纳</h3><p>本次程序设计，算法相对来说较为简单明了，实现起来不算困难，但因为自学了python，想用python 完成此次编程。由于是第一次用python写具有功能性的代码，遇到了不少困难。首先是函数间参数传入问题，c++及java中都不存在<strong>init</strong>函数（self）参数的问题，参数传入较好理解，python中此参数让人备受困扰，在查阅相关博客时还学习到python可以将类内函数作为另一函数的参数传入，在Java中只能做到函数间的相互调用。其次是python的对象函数调用，因为没有python的编程经验，此方面花了不少时间，但也学到了面对对象的方法在不同语言中的通用性及区别。</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充:"></a>补充:</h4><p>1.当python出现列表套列表时，可将里边的列表当作是外边的列表元素处理，将里边的列表剥离出来时只需要另新建变量使其等于外边列表的其所处的索引。<br>2.python函数之间传值时可能会出现值变化的情况，此时一定要注意传参顺序，和传参的数据类型。另外，python可将函数作为参数传入另一个函数，此时就需要注意函数是否被重复调用。</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Jiao-xxm/Jiao-xxm.github.io/2020/03/04/python%20%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%81%B5%E6%9C%BA%20XN_2%20%E6%A8%A1%E6%8B%9F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/04/Servlet%20%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E9%AA%8C%E8%AF%81%E7%A0%81/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            servlet 实现简易验证码
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/04/N%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%EF%BC%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0%E6%B1%82%E8%A7%A3%E5%8F%8Ahankson%E9%97%AE%E9%A2%98/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">java实现最大公约数最大公倍数求解及Hankson问题</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mQrBILG1YcJJj682UpnfYKM4-gzGzoHsz',
+        app_key: 'yk7WKXqjykaMxibww9C5hipn',
+        path: window.location.pathname,
+        notify: 'true',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        卻水
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Yu han の BLog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://blog.csdn.net/qq_41753944" target="_blank" rel="noopener">CSDN</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['面朝大海，春暖花开','愿你一生努力，一生被爱','如果代碼能給你幸福，我願爲你天荒地老！'],
+    startDelay: 0,
+    typeSpeed: 230,
+    loop: true,
+    backSpeed: 150,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

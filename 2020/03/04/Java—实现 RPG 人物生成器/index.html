@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    java RGP 人物生成器 |  Yu han の BLog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Yu han の BLog" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Java—实现 RPG 人物生成器" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  java RGP 人物生成器
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/Java%E2%80%94%E5%AE%9E%E7%8E%B0%20RPG%20%E4%BA%BA%E7%89%A9%E7%94%9F%E6%88%90%E5%99%A8/" class="article-date">
+  <time datetime="2020-03-04T11:24:32.948Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java-%E5%9F%BA%E7%A1%80/">java 基础</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="一．-题目分析"><a href="#一．-题目分析" class="headerlink" title="一．    题目分析"></a>一．    题目分析</h3><h4 id="1．-题目内容"><a href="#1．-题目内容" class="headerlink" title="1．    题目内容"></a>1．    题目内容</h4><p>1.功能描述<br>几乎所有的RPG游戏（一种源自《龙与地下城》的游戏类型）在进入游戏时都会让用户自己来创建自己喜欢的角色。本次上机要求编写一个简化的创建游戏角色的程序。</p>
+<p>2.游戏角色应有的属性<br>本题目要求的游戏角色应有以下属性：名字、性别、种族、职业、力量、敏捷、体力、智力、智慧、生命值和魔法值。<br>名字：不超过50个字符。<br>性别：可以选择男性和女性。<br>种族：一共可选五个种族，人类、精灵、兽人、矮人和元素。<br>职业：可选六种职业，狂战士、圣骑士、刺客、猎手、祭司和巫师。<br>其余属性均为整数。<br>本题目要求首先用户输入角色姓名，然后由用户选择角色性别，然后由用户选择种族，然后选择职业，然后自动分配力量、敏捷、体力、智力和智慧属性，并计算生命值和魔法值。<br>生命值=体力<em>20。<br>魔法值=（智力+智慧）</em>10。<br>3.职业限制<br>很多职业会限制某些种族选择，例如兽人不能就职圣骑士等等，种族和职业的限制表如下：<br>种族/职业    狂战士    圣骑士    刺客    猎手    祭司    巫师<br>人类    允许    允许    允许    允许    允许    允许<br>精灵    不允许    不允许    允许    允许    允许    允许<br>兽人    允许    不允许    不允许    允许    允许    不允许<br>矮人    允许    允许    不允许    不允许    允许    不允许<br>元素    不允许    不允许    不允许    不允许    允许    允许<br>所以在要求用户选择职业时，输出信息里面只能有用户所选择种族可以就职的职业。<br>4.初始属性<br>本题目要求力量、敏捷、体力、智力和智慧要求是随机值（利用随机数函数来取得随机数），但是五项属性的总和应该是100，并且应该和职业相关。例如狂战士的体力和力量就要比较高，而巫师需要较高的智力，而祭司则需要较高的智慧。各职业初始属性的大致比例应遵从下表：<br>职业/属性    力量    敏捷    体力    智力    智慧<br>狂战士    40    20    30    5    5<br>圣骑士    25    15    30    20    10<br>刺客    20    35    20    15    10<br>猎手    15    40    15    10    20<br>祭司    15    20    15    35    15<br>巫师    10    20    10    20    40<br>例如，前面示意图中的祭司的初始属性，大致满足该比例，但是应该是随机的。<br>然后利用属性值计算生命值和魔法值。<br>5.显示信息<br>最后向用户显示该角色的所有信息，然后询问用户是否满意，如用户不满意则重新创建，若用户满意则程序结束，并将用户创建角色的相关信息写入文件保存。</p>
+<h4 id="2-题目分析"><a href="#2-题目分析" class="headerlink" title="2.  题目分析"></a>2.  题目分析</h4><ol>
+<li>掌握面向对象程序设计的方法。明确类与对象的概念，掌握面向对象设计七大原则；</li>
+<li>掌握常见的设计模式以及类图的描述。<br>通过面向对象的方法创建游戏人物，从而加深对面向对象编程的理解，掌握常用的设计方法及类图的  描述。</li>
+</ol>
+<h3 id="二．-类图设计"><a href="#二．-类图设计" class="headerlink" title="二．    类图设计"></a>二．    类图设计</h3><p><img src="https://img-blog.csdnimg.cn/20190420104906382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="三．-程序实现"><a href="#三．-程序实现" class="headerlink" title="三．    程序实现"></a>三．    程序实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 基础;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStreamWriter;</span><br><span class="line"><span class="comment">//import java.io.Writer;</span></span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span>  <span class="title">RPGrole</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span>  <span class="keyword">static</span> String rolename;<span class="comment">//姓名</span></span><br><span class="line">	<span class="keyword">private</span>  <span class="keyword">static</span> String sex;<span class="comment">//性别</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String racial;<span class="comment">//种族</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String career;<span class="comment">//职业</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> strength,agility,physical,intellige,intelligence,life,magic;<span class="comment">//力量,敏捷,体力,智力,智慧,生命值,魔法值</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"角色姓名			"</span>+rolename);</span><br><span class="line">		System.out.println(<span class="string">"角色性别			"</span>+sex);</span><br><span class="line">		System.out.println(<span class="string">"种族			"</span>+racial);</span><br><span class="line">		System.out.println(<span class="string">"职业			"</span>+career);</span><br><span class="line">		System.out.println(<span class="string">"力量			"</span>+strength);</span><br><span class="line">		System.out.println(<span class="string">"敏捷			"</span>+agility);</span><br><span class="line">		System.out.println(<span class="string">"体力			"</span>+physical);</span><br><span class="line">		System.out.println(<span class="string">"智力			"</span>+intellige);</span><br><span class="line">		System.out.println(<span class="string">"智慧			"</span>+intelligence);</span><br><span class="line">		System.out.println(<span class="string">"生命值			"</span>+life);</span><br><span class="line">		System.out.println(<span class="string">"魔法值			"</span>+magic);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getname</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"请设置您的角色姓名"</span>);</span><br><span class="line">			Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">			 String rolename_def = sc.nextLine();</span><br><span class="line">			 <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			 <span class="keyword">if</span>(rolename_def.length()&gt;<span class="number">50</span>)</span><br><span class="line">			 &#123;System.out.println(<span class="string">"您设置的角色名过长"</span>);</span><br><span class="line">			 System.out.println(<span class="string">"请设置您的角色姓名"</span>);</span><br><span class="line">			 rolename_def = sc.nextLine();</span><br><span class="line">			 &#125;</span><br><span class="line">			 <span class="keyword">else</span> </span><br><span class="line">			 &#123;rolename=rolename_def;</span><br><span class="line">			 <span class="keyword">break</span>;</span><br><span class="line">			 &#125;</span><br><span class="line">			 &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getsex</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"请选择角色性别：1.男 2.女"</span>);</span><br><span class="line">		   Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> sex_def = sc.nextInt();</span><br><span class="line">		<span class="keyword">switch</span>(sex_def) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		&#123;</span><br><span class="line">			sex = <span class="string">"男"</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">		&#123;</span><br><span class="line">			sex = <span class="string">"女"</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getracial</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> choose;</span><br><span class="line">		System.out.println(<span class="string">"请选择您游戏角色的种族：（0 人类 1 精灵 2 兽人 3 矮人 4 元素）"</span>);</span><br><span class="line">		  Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		  choose  = sc.nextInt();</span><br><span class="line">		  <span class="keyword">switch</span>(choose) &#123;</span><br><span class="line">		  <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">			  racial=<span class="string">"人类"</span>;<span class="keyword">break</span>;  </span><br><span class="line">		  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			  racial=<span class="string">"精灵"</span>;<span class="keyword">break</span>;</span><br><span class="line">		  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			  racial=<span class="string">"兽人"</span>;<span class="keyword">break</span>;</span><br><span class="line">		  <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">			  racial=<span class="string">"矮人"</span>;<span class="keyword">break</span>;</span><br><span class="line">		  <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">			  racial=<span class="string">"元素"</span>;<span class="keyword">break</span>;</span><br><span class="line">		 </span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">getcareer</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> s;</span><br><span class="line">		<span class="keyword">switch</span>(racial)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"人类"</span>:</span><br><span class="line">			System.out.println(<span class="string">"请选择您角色的职业:(1 狂战士 2 圣骑士 3  刺客 4 猎手 5 祭司 6 巫师)"</span>);</span><br><span class="line">			s = sc.nextInt();</span><br><span class="line">			<span class="keyword">switch</span>(s) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				career=<span class="string">"狂战士"</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				career=<span class="string">"圣骑士"</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				career=<span class="string">"刺客"</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">				career=<span class="string">"猎手"</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">				career=<span class="string">"祭司"</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">				career=<span class="string">"巫师"</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"精灵"</span>:</span><br><span class="line">			System.out.println(<span class="string">"请选择您角色的职业:( 1  刺客 2 猎手 3 祭司 4 巫师)"</span>);</span><br><span class="line">			s = sc.nextInt();</span><br><span class="line">			<span class="keyword">switch</span>(s) &#123;	</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				career=<span class="string">"刺客"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				career=<span class="string">"猎手"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				career=<span class="string">"祭司"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">				career=<span class="string">"巫师"</span>;<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"兽人"</span>:</span><br><span class="line">			System.out.println(<span class="string">"请选择您角色的职业:( 1  狂战士 2 猎手 3 祭司 )"</span>);</span><br><span class="line">			s = sc.nextInt();</span><br><span class="line">			<span class="keyword">switch</span>(s) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				career=<span class="string">"狂战士"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				career=<span class="string">"猎手"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				career=<span class="string">"祭司"</span>;<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"矮人"</span>:</span><br><span class="line">			System.out.println(<span class="string">"请选择您角色的职业:( 1  狂战士 2 圣骑士 3 祭司 )"</span>);</span><br><span class="line">			s = sc.nextInt();</span><br><span class="line">			<span class="keyword">switch</span>(s) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				career=<span class="string">"狂战士"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				career=<span class="string">"圣骑士"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				career=<span class="string">"祭司"</span>;<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"元素"</span>:</span><br><span class="line">			System.out.println(<span class="string">"请选择您角色的职业:( 1  祭司 2 巫师  )"</span>);</span><br><span class="line">			s = sc.nextInt();</span><br><span class="line">			<span class="keyword">switch</span>(s) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				career=<span class="string">"祭司"</span>;<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				career=<span class="string">"巫师"</span>;<span class="keyword">break</span>;</span><br><span class="line">			&#125;<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getProperty</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">switch</span> (career) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"狂战士"</span>:</span><br><span class="line">            	strength = random.nextInt(<span class="number">3</span>) + <span class="number">39</span>;<span class="comment">//力量</span></span><br><span class="line">            	agility = strength/<span class="number">2</span>;<span class="comment">//敏捷</span></span><br><span class="line">            	physical = strength-<span class="number">10</span>;<span class="comment">//体力</span></span><br><span class="line">            	intelligence = strength/<span class="number">8</span>;<span class="comment">//智力</span></span><br><span class="line">               </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"圣骑士"</span>:</span><br><span class="line">            	strength = random.nextInt(<span class="number">3</span>) + <span class="number">23</span>;<span class="comment">//力量</span></span><br><span class="line">            	agility = strength-<span class="number">10</span>;<span class="comment">//敏捷</span></span><br><span class="line">            	physical = agility*<span class="number">2</span>;<span class="comment">//体力</span></span><br><span class="line">            	intelligence = agility+<span class="number">5</span>;<span class="comment">//智力</span></span><br><span class="line">               </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"刺客"</span>:</span><br><span class="line">            	strength = random.nextInt(<span class="number">3</span>) + <span class="number">20</span>;<span class="comment">//力量</span></span><br><span class="line">            	agility = strength*<span class="number">2</span>-<span class="number">5</span>;<span class="comment">//敏捷</span></span><br><span class="line">            	physical = strength;<span class="comment">//体力</span></span><br><span class="line">            	intelligence = physical-<span class="number">5</span>;<span class="comment">//智力</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"猎手"</span>:</span><br><span class="line">                strength = random.nextInt(<span class="number">3</span>) + <span class="number">13</span>;<span class="comment">//力量</span></span><br><span class="line">                agility = strength*<span class="number">3</span>-<span class="number">5</span>;<span class="comment">//敏捷</span></span><br><span class="line">                physical = strength;<span class="comment">//体力</span></span><br><span class="line">                intelligence = physical-<span class="number">5</span>;<span class="comment">//智力</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"祭司"</span>:</span><br><span class="line">                strength = random.nextInt(<span class="number">3</span>) + <span class="number">13</span>;<span class="comment">//力量</span></span><br><span class="line">                agility = strength+<span class="number">5</span>;<span class="comment">//敏捷</span></span><br><span class="line">                physical = strength;<span class="comment">//体力</span></span><br><span class="line">                intelligence = physical+agility;<span class="comment">//智力</span></span><br><span class="line">               </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"巫师"</span>:</span><br><span class="line">            	strength = random.nextInt(<span class="number">3</span>) + <span class="number">8</span>;<span class="comment">//力量</span></span><br><span class="line">            	agility = strength*<span class="number">2</span>;<span class="comment">//敏捷</span></span><br><span class="line">            	physical = strength;<span class="comment">//体力</span></span><br><span class="line">            	intelligence = physical*<span class="number">2</span>;<span class="comment">//智力</span></span><br><span class="line">               </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">       intellige = <span class="number">100</span>-strength-agility-physical-intelligence;<span class="comment">//智慧</span></span><br><span class="line">       magic = (intelligence+intellige)*<span class="number">10</span>;<span class="comment">//魔法</span></span><br><span class="line">       life = physical*<span class="number">20</span>;<span class="comment">//生命值</span></span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 菜单及用户反馈</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">feedback</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException, IOException, InterruptedException </span>&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">while</span> (<span class="keyword">true</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			getname();<span class="comment">//姓名设置</span></span><br><span class="line">			getsex();<span class="comment">//性别</span></span><br><span class="line">			getracial();<span class="comment">//获得种族</span></span><br><span class="line">			getcareer();<span class="comment">//获得职业</span></span><br><span class="line">			getProperty();<span class="comment">//随机生成属性</span></span><br><span class="line">			show();</span><br><span class="line">			System.out.println(<span class="string">"小主，对该角色您还满意吗   0 :满意 anykey: 也不行呀"</span>);</span><br><span class="line">			System.out.println(<span class="string">"如果您不满意将重新为您生成新角色 ，满意的话就直接保存文件了哦"</span>);</span><br><span class="line">			String input = sc.nextLine();</span><br><span class="line">            System.out.println(input);</span><br><span class="line">			<span class="keyword">if</span>(input.equals(<span class="string">"0"</span>))</span><br><span class="line">			&#123;</span><br><span class="line">				File f = <span class="keyword">new</span> File(<span class="string">"RPG.txt"</span>);</span><br><span class="line">				FileOutputStream fop = <span class="keyword">new</span> FileOutputStream(f);</span><br><span class="line">				OutputStreamWriter writer = <span class="keyword">new</span> OutputStreamWriter(fop, <span class="string">"UTF-8"</span>);</span><br><span class="line">				writer.append(<span class="string">"                            召唤师角色创建详情 "</span>);</span><br><span class="line">				writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(<span class="string">"	角色姓名		"</span>+rolename);writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(<span class="string">"  	角色性别		"</span>+sex);writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(<span class="string">" 	种族			"</span>+racial);writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(<span class="string">"  	职业			"</span>+career);writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(String.valueOf(<span class="string">"  	力量			"</span>+strength));writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(String.valueOf(<span class="string">"  	敏捷			"</span>+agility));writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(String.valueOf(<span class="string">"  	体力			"</span>+physical));writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(String.valueOf(<span class="string">"  	智力			"</span>+intellige));writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(String.valueOf(<span class="string">"  	智慧			"</span>+intelligence));writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(String.valueOf(<span class="string">"  	生命值			"</span>+life));writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.append(String.valueOf(<span class="string">"  	魔法值			"</span>+magic));writer.append(<span class="string">"\r\n"</span>);</span><br><span class="line">				writer.close();</span><br><span class="line">				System.out.println(<span class="string">"角色已创建，请在文件中查看"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">"角色重建  loading"</span>);</span><br><span class="line">				Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">				feedback();</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException, IOException, InterruptedException </span>&#123;</span><br><span class="line">			System.out.println(<span class="string">"欢迎来到地下城，亲爱的召唤师，请创建您的角色"</span>);</span><br><span class="line">			System.out.println(<span class="string">"=========================================="</span>);</span><br><span class="line">			feedback();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四．-调试，测试及运行结果"><a href="#四．-调试，测试及运行结果" class="headerlink" title="四．    调试，测试及运行结果"></a>四．    调试，测试及运行结果</h3><h6 id="调试断点单步跳入，跳过"><a href="#调试断点单步跳入，跳过" class="headerlink" title="调试断点单步跳入，跳过"></a>调试断点单步跳入，跳过</h6><p><img src="https://img-blog.csdnimg.cn/20190420105517231.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="角色重建"><a href="#角色重建" class="headerlink" title="角色重建"></a>角色重建</h6><p><img src="https://img-blog.csdnimg.cn/20190420105611822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="五．-个人心得"><a href="#五．-个人心得" class="headerlink" title="五．    个人心得"></a>五．    个人心得</h3><ol>
+<li>本次程序设计，深化了对面向对象编程的思想，了解掌握了UML （统一建模语言）类图和常用的设计模式，但是对七大法则运用及理解还是不够深入。</li>
+<li>在编码时开始用this语句对全局变量赋值，所以getname(),getsex()等属性方法都是以动态方法来被调用，Java  main()方法默认属性为static静态方法，这就导致了在主类创建对象调用函数是出现一系列问题，如 创建角色RPGrole 当正常调用函数时，需采用RPGrole.function()来实现，这是静态方法调用非静态方法时的方法，但是当函数有参调用上层函数的返回值时，就会出现问题，此时如果仍采用RPGrole.function(RPGrole.function()),虽然按照道理来说并没有什么问题，但是当实际操作起来就会发现这可能会导致函数的重复调用，所以，当函数非静态时，用函数调用函数用起来要慎重。</li>
+<li>改进空间：将对象生成类与主类单独分开，更能体现OOP的思想，在主类中只完成对象的属性获取及参数设置，在对象类中对这些主类函数进行调用，生成想要角色。</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Jiao-xxm/Jiao-xxm.github.io/2020/03/04/Java%E2%80%94%E5%AE%9E%E7%8E%B0%20RPG%20%E4%BA%BA%E7%89%A9%E7%94%9F%E6%88%90%E5%99%A8/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/04/java%E5%AE%9E%E7%8E%B0CORBA%E7%BB%84%E4%BB%B6%E5%8C%96%E7%BC%96%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            java CORBA 组件化编程
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/04/java%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B02%E7%9A%84%E5%B9%82%E6%AC%A1%E8%A1%A8%E7%A4%BA/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">java递归实现十进制数2的幂次表示</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mQrBILG1YcJJj682UpnfYKM4-gzGzoHsz',
+        app_key: 'yk7WKXqjykaMxibww9C5hipn',
+        path: window.location.pathname,
+        notify: 'true',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        卻水
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Yu han の BLog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://blog.csdn.net/qq_41753944" target="_blank" rel="noopener">CSDN</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['面朝大海，春暖花开','愿你一生努力，一生被爱','如果代碼能給你幸福，我願爲你天荒地老！'],
+    startDelay: 0,
+    typeSpeed: 230,
+    loop: true,
+    backSpeed: 150,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

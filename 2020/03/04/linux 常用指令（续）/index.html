@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Linux常用指令（续） |  Yu han の BLog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Yu han の BLog" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-linux 常用指令（续）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linux常用指令（续）
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/linux%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89/" class="article-date">
+  <time datetime="2020-03-04T11:24:33.017Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux-%E5%85%A5%E9%97%A8/">Linux 入门</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">4分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="2-0-常用命令-建立链接"><a href="#2-0-常用命令-建立链接" class="headerlink" title="2.0 常用命令- 建立链接"></a>2.0 常用命令- 建立链接</h3><h5 id="·Linux-中链接文件有两种：软链接，硬链接"><a href="#·Linux-中链接文件有两种：软链接，硬链接" class="headerlink" title="·Linux 中链接文件有两种：软链接，硬链接"></a>·Linux 中链接文件有两种：软链接，硬链接</h5><p><strong>··软链接： 相当于快捷方式，通过软链接可以修改源文件的内容</strong><br><strong><em>ln -s 源文件 链接文件</em></strong></p>
+<p>删除软链接，不影响源文件<br>删除源文件，软链接失效<br><strong>··硬链接： 一个文件有多个名字，通过硬链接可以修改源文件的内容。</strong><br><strong><em>ln 源文件 链接文件</em></strong></p>
+<p>删除源文件，如果文件还有多个硬链接，则无影响</p>
+<p><strong>软硬链接区别：</strong><br>    ·软链接可以指向 一个不存在的文件，硬链接不可以<br>·可以对目录创建软链接，而不能对目录创建硬链接<br><img src="https://img-blog.csdnimg.cn/20190721131039703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-1-常用命令-文件搜索"><a href="#2-1-常用命令-文件搜索" class="headerlink" title="2.1 常用命令- 文件搜索"></a>2.1 常用命令- 文件搜索</h3><p><strong>·在文本内部搜索 grep</strong><br>    <strong><em>grep  ‘搜索内容’  文件路径</em></strong><br>        <img src="https://img-blog.csdnimg.cn/20190721131057803.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>        <strong>grep ‘teacher’ ./test.txt  即搜索文本中与‘teacher’相关的行 ，关键字用红字标出</strong></p>
+<p><strong>grep 内部搜索</strong><br>            <strong>选项：</strong>-n 查看结果的行数<br>                             -i 忽略大小写搜索<br>                             -v 取反搜索，搜索不是关键词范围的其他所有行<br><strong>·grep 正则搜索</strong><br>            grep ‘^a’ 文件路径      【搜索以开头的行】</p>
+<p><strong>·在（linux）计算机中搜索文件 find</strong><br>            <strong><em>find 目标文件目录 选项 条件</em></strong> </p>
+<p><img src="https://img-blog.csdnimg.cn/201907211311545.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2-常用命令-归档和压缩"><a href="#2-2-常用命令-归档和压缩" class="headerlink" title="2.2 常用命令-归档和压缩"></a>2.2 常用命令-归档和压缩</h3><p><strong>·归档和解档</strong></p>
+<ul>
+<li><p>*tar -cvf 归档的文件名.tar 文件1 文件2</p>
+</li>
+<li><p>tar -xvf 档案文件名*</p>
+<p><strong><em>选项f必须放到最后</em></strong></p>
+</li>
+</ul>
+<h4 id="·归档-压缩-和-解压-解档"><a href="#·归档-压缩-和-解压-解档" class="headerlink" title="·归档+压缩 和 解压+解档"></a>·归档+压缩 和 解压+解档</h4><p><strong>·归档+压缩</strong><br>         tar -zcvf 归档的文件名.tar.gz 文件1 文件2<br><strong>·解档+解压</strong><br>tar -zcvf 归档的文件名.tar.gz<br>如果需要指定解档的目录：tar -zxvf 归档的文件名.tar.gc -C 要解压解档到的目录</p>
+<h3 id="2-2-1-常用命令-归档和压缩"><a href="#2-2-1-常用命令-归档和压缩" class="headerlink" title="2.2.1 常用命令-归档和压缩"></a>2.2.1 常用命令-归档和压缩</h3><p><strong>·zip 压缩</strong><br>压缩目录：zip -r xxx.zip<br><strong>·unzip 解压缩</strong><br>unzip xxx.zip</p>
+<h3 id="2-3-常用命令-文件权限"><a href="#2-3-常用命令-文件权限" class="headerlink" title="2.3 常用命令- 文件权限"></a>2.3 常用命令- 文件权限</h3><p><img src="https://img-blog.csdnimg.cn/20190721131236103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>·文件权限的构成</strong><br>九个字母，三组 （权限拥有者 u -&gt;user，权限组 g-&gt;group ,其他用户权限o-other）  所有用户权限 a</p>
+<p>每一组权限可选的权限有：</p>
+<p><em>r、w、x 具体权限如上图</em></p>
+<h3 id="2-4-常用命令-权限修改"><a href="#2-4-常用命令-权限修改" class="headerlink" title="2.4 常用命令- 权限修改"></a>2.4 常用命令- 权限修改</h3><h5 id="①字母表示法"><a href="#①字母表示法" class="headerlink" title="①字母表示法"></a>①字母表示法</h5><ul>
+<li>·权限修改指令  chmod</li>
+<li>用户： u g o a</li>
+<li>权限设置 ： +（增加）、-（撤销）、=（设置）</li>
+<li>具体权限： r/w/x</li>
+<li>用法： chmod 用户 + 具体权限 文件名</li>
+</ul>
+<p><em>如： chmod u+’r’ test.txt 即为文件拥有者增加文件可读权限<br>chmod u=rwx 1.txt</em></p>
+<h5 id="②数字表示法"><a href="#②数字表示法" class="headerlink" title="②数字表示法"></a>②数字表示法</h5><p><img src="https://img-blog.csdnimg.cn/20190721131301812.png" alt="在这里插入图片描述"><br><strong>三位权限数字 ：第一位拥有者 第二位同组用户 第三位 其他用户</strong></p>
+<p><em>chomd 权限数字 文件路径</em> </p>
+<h3 id="2-4-常用命令-用户管理"><a href="#2-4-常用命令-用户管理" class="headerlink" title="2.4 常用命令-用户管理"></a>2.4 常用命令-用户管理</h3><p><strong>·切换用户</strong><br><strong><em>临时：</em></strong> sudo  命令<br><strong><em>永久：</em></strong> su 用户名 输入用户名对应的密码</p>
+<ol>
+<li>sudo -s 输入当前用户的密码</li>
+<li>passwd 修改密码</li>
+<li>passwd  【修改当前用户的密码】</li>
+<li>passwd  <strong><strong>【修改</strong></strong>用户的密码】</li>
+<li>exit<pre><code>exit 如果当前没有用户在线，直接退出终端
+如果多次切换用户，退出到上次登录的用户</code></pre><strong>who</strong><br>用来查看当前系统的登录用户<br><em>选项：</em> -q  统计用户数量<pre><code>-u  显示最后一次操作距离现在的时间</code></pre></li>
+</ol>
+<h3 id="2-5-常用命令-关机-、重启"><a href="#2-5-常用命令-关机-、重启" class="headerlink" title="2.5 常用命令- 关机 、重启"></a>2.5 常用命令- 关机 、重启</h3><p><img src="https://img-blog.csdnimg.cn/20190721131323483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-6-常用命令-软件安装与卸载"><a href="#2-6-常用命令-软件安装与卸载" class="headerlink" title="2.6 常用命令- 软件安装与卸载"></a>2.6 常用命令- 软件安装与卸载</h3><p> <strong>Linux 软件安装三种方式</strong></p>
+<p>源代码包安装  deb 包安装  apt-get</p>
+<p><em>源代码包安装需要先编译后安装，较为麻烦<br>deb包安装需要解决软件依赖问题<br>apt-get 方式较为省事，且安装一般不会出现问题，下做介绍</em></p>
+<h5 id="apt-get-方式-安装"><a href="#apt-get-方式-安装" class="headerlink" title="apt-get 方式 安装"></a><strong>apt-get 方式 安装</strong></h5><pre><code>**·配置软件镜像源  修改/etc/apt/source.list**</code></pre><p><em>注意： 在使用 gedit /etc/apt/source.list 命令打开配置文件时，通常情况下会出现权限不够无法修改的情况，此时临时或永久提升权限可修改保存</em><br><em>gedit 文本编辑只在Ubuntu 发行版中有，在centOS中没有</em></p>
+<p><strong>命令：</strong> </p>
+<ul>
+<li>sudo gedit /etc/apt/source.list</li>
+<li>更新软件源 sudo  apt-get update</li>
+<li>安装软件  sudo apt-get install 软件包名</li>
+<li>卸载软件 sudo apt-get remove 软件包名称</li>
+</ul>
+<h3 id="2-7-ssh-远程登录"><a href="#2-7-ssh-远程登录" class="headerlink" title="2.7 ssh 远程登录"></a>2.7 ssh 远程登录</h3><p><strong>服务器端安装ssh server</strong><br>sudo apt-get install openssh-server<br><strong>·客户端登录</strong></p>
+<p>ssh 服务器用户名@服务器地址<br>如 ssh demo @192.168.150.112   –&gt;123</p>
+<h3 id="2-8-编辑器-vim介绍及使用"><a href="#2-8-编辑器-vim介绍及使用" class="headerlink" title="2.8 编辑器 vim介绍及使用"></a>2.8 编辑器 vim介绍及使用</h3><h5 id="三种模式："><a href="#三种模式：" class="headerlink" title="三种模式："></a><strong>三种模式：</strong></h5><ol>
+<li>命令模式（移动光标，复制，删除）</li>
+<li>输入模式（编辑文件）</li>
+<li>末行模式（保存文件，查找替换）</li>
+</ol>
+<h5 id="三种模式转换："><a href="#三种模式转换：" class="headerlink" title="三种模式转换："></a>三种模式转换：</h5><p>打开文件默认是命令模式——【a\i\o】-&gt;输入模式——【：】-&gt;末行模式</p>
+<h5 id="vim-操作"><a href="#vim-操作" class="headerlink" title="vim 操作"></a><strong>vim 操作</strong></h5><p>（1）.创建文件 ：vi 文件名——&gt; i 进入编辑模式—&gt;编辑模式—&gt;【esc】到命令模式—&gt;【：】进入末行模式—&gt;wq保存并退出<br>（2）.进入输入模式<br>             - i 光标前插入  I行首插入<br>             - a 光标后 行尾<br>            - o 光标下一行产生新行 O 光标上一行产生新行</p>
+<p>（3）.进入命令模式<br>          在任何状态下【esc】</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/Jiao-xxm/Jiao-xxm.github.io/2020/03/04/linux%20%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%88%E7%BB%AD%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/03/04/Linux%20%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8(%E7%AE%80%E5%8D%95)%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Linux文件目录及常用命令
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/04/Linux%20%20%E5%85%A5%E9%97%A8%EF%BC%88%E5%A1%AB%E5%9D%91%E5%AE%9E%E8%B7%B5%EF%BC%8C%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Linux踩坑实践</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mQrBILG1YcJJj682UpnfYKM4-gzGzoHsz',
+        app_key: 'yk7WKXqjykaMxibww9C5hipn',
+        path: window.location.pathname,
+        notify: 'true',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        卻水
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Yu han の BLog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://blog.csdn.net/qq_41753944" target="_blank" rel="noopener">CSDN</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['面朝大海，春暖花开','愿你一生努力，一生被爱','如果代碼能給你幸福，我願爲你天荒地老！'],
+    startDelay: 0,
+    typeSpeed: 230,
+    loop: true,
+    backSpeed: 150,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>
