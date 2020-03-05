@@ -71,6 +71,83 @@
     
     
     
+    <article id="post-Maven项目连接Oracle数据库坐标无法导入问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/05/Maven%E9%A1%B9%E7%9B%AE%E8%BF%9E%E6%8E%A5Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9D%90%E6%A0%87%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5%E9%97%AE%E9%A2%98/"
+    >Maven项目连接Oracle数据库坐标无法导入问题</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/05/Maven%E9%A1%B9%E7%9B%AE%E8%BF%9E%E6%8E%A5Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9D%90%E6%A0%87%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-03-05T11:53:28.729Z" itemprop="datePublished">2020-03-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaWeb/">JavaWeb</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败"><a href="#问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败" class="headerlink" title="问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败"></a>问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败</h3><h5 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h5><h6 id="1-下载jar包（由于官网下载速度较慢，附百度云连接）"><a href="#1-下载jar包（由于官网下载速度较慢，附百度云连接）" class="headerlink" title="1. 下载jar包（由于官网下载速度较慢，附百度云连接）"></a>1. 下载jar包（由于官网下载速度较慢，附百度云连接）</h6><p>链接:<a href="https://pan.baidu.com/s/10DSDi_LyopEiHydr55rYWg" target="_blank" rel="noopener">oracle6.jar</a> 提取码: 8sic</p>
+<h6 id="2-将jar包放在maven仓库，在项目的maven-cmd-line中执行下面的命令。"><a href="#2-将jar包放在maven仓库，在项目的maven-cmd-line中执行下面的命令。" class="headerlink" title="2. 将jar包放在maven仓库，在项目的maven cmd line中执行下面的命令。"></a>2. 将jar包放在maven仓库，在项目的maven cmd line中执行下面的命令。</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">install:install-file -Dfile&#x3D;E:\maven_repository\ojdbc6.jar -DgroupId&#x3D;com.oracle -DartifactId&#x3D;ojdbc6 -Dversion&#x3D;1.0.0 -Dpackaging&#x3D;jar -DgeneratePom&#x3D;true</span><br></pre></td></tr></table></figure>
+<p>如图所示：<br><img src="https://img-blog.csdnimg.cn/20200305195031928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="按顺序操作"></p>
+<h6 id="3-在pom文件中添加依赖"><a href="#3-在pom文件中添加依赖" class="headerlink" title="3.在pom文件中添加依赖"></a>3.在pom文件中添加依赖</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.oracle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ojdbc6<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    	 <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>至此依赖导入成功。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-递归经典例题—java实现" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -886,113 +963,6 @@
 <h5 id="三种模式转换："><a href="#三种模式转换：" class="headerlink" title="三种模式转换："></a>三种模式转换：</h5><p>打开文件默认是命令模式——【a\i\o】-&gt;输入模式——【：】-&gt;末行模式</p>
 <h5 id="vim-操作"><a href="#vim-操作" class="headerlink" title="vim 操作"></a><strong>vim 操作</strong></h5><p>（1）.创建文件 ：vi 文件名——&gt; i 进入编辑模式—&gt;编辑模式—&gt;【esc】到命令模式—&gt;【：】进入末行模式—&gt;wq保存并退出<br>（2）.进入输入模式<br>             - i 光标前插入  I行首插入<br>             - a 光标后 行尾<br>            - o 光标下一行产生新行 O 光标上一行产生新行</p>
 <p>（3）.进入命令模式<br>          在任何状态下【esc】</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Linux  入门（填坑实践，你想要的都在这）" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/04/Linux%20%20%E5%85%A5%E9%97%A8%EF%BC%88%E5%A1%AB%E5%9D%91%E5%AE%9E%E8%B7%B5%EF%BC%8C%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%EF%BC%89/"
-    >Linux踩坑实践</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/04/Linux%20%20%E5%85%A5%E9%97%A8%EF%BC%88%E5%A1%AB%E5%9D%91%E5%AE%9E%E8%B7%B5%EF%BC%8C%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%EF%BC%89/" class="article-date">
-  <time datetime="2020-03-04T11:24:32.999Z" itemprop="datePublished">2020-03-04</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux-%E5%85%A5%E9%97%A8/">Linux 入门</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h3 id="linux-常见发行版"><a href="#linux-常见发行版" class="headerlink" title="linux 常见发行版"></a>linux 常见发行版</h3><ul>
-<li><strong>CentOS</strong></li>
-<li><strong>redHat</strong></li>
-<li><strong>ubuntu</strong></li>
-<li><pre><code>本Blog 操作均以Ubuntu 18.04 -64 实践
-附上百度云镜像链接（VMware,Ubuntu iso）：
-链接：https://pan.baidu.com/s/1qLxVvxh5M2AfhWkknv9jIQ     
-提取码：oe0t </code></pre></li>
-</ul>
-<h3 id="一．Ubuntu-图形界面简介"><a href="#一．Ubuntu-图形界面简介" class="headerlink" title="一．Ubuntu 图形界面简介"></a>一．Ubuntu 图形界面简介</h3><p><img src="https://img-blog.csdnimg.cn/20190722151202767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="二．Ubuntu-中文输入法及系统语言设置"><a href="#二．Ubuntu-中文输入法及系统语言设置" class="headerlink" title="二．Ubuntu 中文输入法及系统语言设置"></a>二．Ubuntu 中文输入法及系统语言设置</h3><p>– Ubuntu 系统语言环境设置（VMware默认安装为英文），此处设置为中文。<br>附链接：<br><a href="https://blog.csdn.net/gys_20153235/article/details/80490880" target="_blank" rel="noopener">https://blog.csdn.net/gys_20153235/article/details/80490880</a><br>– 搜狗拼音安装(选装)<br>由于搜狗输入法安装需要中文输入法框架fcitx 支持，而默认fcitx 在系统中没有安装，下面给出命令行安装方法</p>
-<p>sudo add-apt-repository ppa:fcitx-team/nightly<br>Sudo apt-get update<br>Sudo apt-get install fcitx<br>以下是baidu 提供的安装方法</p>
-<p><a href="https://jingyan.baidu.com/article/b7001fe1a7d2c60e7382dd7c.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/b7001fe1a7d2c60e7382dd7c.html</a></p>
-<h3 id="三．常用软件安装"><a href="#三．常用软件安装" class="headerlink" title="三．常用软件安装"></a>三．常用软件安装</h3><h4 id="1-编程工具"><a href="#1-编程工具" class="headerlink" title="(1).编程工具"></a>(1).编程工具</h4><p><strong>–java</strong></p>
-<h5 id="lt-1-gt-安装jdk"><a href="#lt-1-gt-安装jdk" class="headerlink" title="&lt;1&gt; 安装jdk"></a>&lt;1&gt; 安装jdk</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install default-jre    y</span><br><span class="line">apt-cache search openjdk</span><br><span class="line">sudo apt-get install openjdk-8-jdk</span><br></pre></td></tr></table></figure>
-<h5 id="lt-2-gt-安装代码工具"><a href="#lt-2-gt-安装代码工具" class="headerlink" title="&lt;2&gt; 安装代码工具"></a>&lt;2&gt; 安装代码工具</h5><p>Java 编写代码主流使用eclipse 和 Idea，下面分别做安装方法介绍</p>
-<p><strong>·eclipse安装</strong></p>
-<p>①　打开终端，输入命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install eclipse</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/2019072215163845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>②　输入y/Y  确认继续<br><img src="https://img-blog.csdnimg.cn/20190722151736202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>③　等待解包完成后可直接打开运行</p>
-<p><strong>·IDEA 安装</strong><br>&lt;1&gt;.搜索Idea</p>
-<p>进入官网，选择linux版本下载</p>
-<p><img src="https://img-blog.csdnimg.cn/20190722151835925.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>&lt;2&gt;.    下载完成后解压提取到某个文件夹下，利用图形化界面文件管理器进入文件bin目录下，如<br>Downloads/idea-IC-191.7479.19/bin<br><img src="https://img-blog.csdnimg.cn/2019072215190844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在如上所示的文件目录下单击鼠标右键 ，选择在终端打开</p>
-<p>&lt;3&gt;.进入该目录下终端后执行如下指令</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod a=+rx bin/idea.sh     --提升脚本文件读权限和可执行权限</span><br><span class="line">sh idea.sh  --执行脚本文件</span><br></pre></td></tr></table></figure>
-<p>&lt;4&gt;.安装<br>如果前边一切进行顺利，此时出现安装窗口。<br>前边步骤相对较为简单，不做过多赘述，值得注意的是下图的窗口，用于选择是否要将IntelliJ IDEA与系统应用程序菜单集成。在几乎每一种情况下，答案是肯定的，否则，为了启动IntelliJ IDEA，我们必须手动执行idea.sh脚本，而这并不是最舒适的方式。因此选择【Next launch Script】创建启动器脚本。<br><img src="https://img-blog.csdnimg.cn/20190722152045283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>&lt;5&gt;.在菜单搜索框中搜索idea,出现idae图标，添加到收藏夹，即可快捷启动。<br><img src="https://img-blog.csdnimg.cn/20190722152106825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>–Python</strong><br>因为Ubuntu系统 预装了Python3 Python2<br><img src="https://img-blog.csdnimg.cn/20190722152204324.png" alt="在这里插入图片描述"><br>所以不需要自己下载安装<br>Python 代码编写通常用pycharm和 idle(简单代码编写)，下提供两者的安装方式</p>
-<p><strong>&lt;1&gt;idle</strong><br>在终端执行命令  <code>sudo apt-get install idle</code><br><img src="https://img-blog.csdnimg.cn/20190722152304529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong><pycharm></strong><br>因为该软件发行商与idea为同一公司，所以安装步骤及其相似</p>
-<ol>
-<li>下载完成后解压提取到某个文件夹下，利用图形化界面文件管理器进入文件bin目录下，如<br>Downloads/pycharm-community-2019.1.3/bin<br>在如上所示的文件目录下单击鼠标右键 ，选择在终端打开<br><img src="https://img-blog.csdnimg.cn/2019072215235446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>在终端输入如下指令进行安装<br><code>chmod 555 pycharm.sh</code>    ——为pycharm.sh 脚本文件提升读和可执行权限<br><code>sh pycharm.sh</code>                 ——执行该命令后pycharm进入安装窗口，同样选择是否创建启动脚本是选择是【Next launch script】以创建快捷启动方式</li>
-</ol>
-<h4 id="2-浏览器—三行命令安装chome"><a href="#2-浏览器—三行命令安装chome" class="headerlink" title="(2)浏览器—三行命令安装chome"></a>(2)浏览器—三行命令安装chome</h4><pre><code>Wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
- sudo dpkg -i google-chrome*
- sudo apt-get install -f</code></pre><h3 id="四．解决linux系统自带火狐浏览器无法播放在线音乐问题"><a href="#四．解决linux系统自带火狐浏览器无法播放在线音乐问题" class="headerlink" title="四．解决linux系统自带火狐浏览器无法播放在线音乐问题"></a>四．解决linux系统自带火狐浏览器无法播放在线音乐问题</h3><pre><code>众所周知Tecent 巴巴一向无视linux, 理所当然，也就没有QQ music for linux 一说，当然其他平台也 好不到哪里去</code></pre><p>那么想听音乐就只能网页在线播放喽，可是当音乐播放键||时，你会绝望的发现并没有声音，试了多次无果，于是转战chome ,就会发现geogle 还是有点东西，播放在线QQ music 毫无压力，回到Firefox，拿出开发工具查看控制台，看到原来是解码器不支持解码AAC,没办法，装一个喽。<br>控制台输入如下命令可安装大多数音频解码：</p>
-<pre><code>sudo apt-get install ubuntu-restricted-extras</code></pre><p>安装后重启火狐，问题解决。</p>
 
       
       <!-- reward -->

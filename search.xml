@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Maven项目连接Oracle数据库坐标无法导入问题</title>
+    <url>/2020/03/05/Maven%E9%A1%B9%E7%9B%AE%E8%BF%9E%E6%8E%A5Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9D%90%E6%A0%87%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败"><a href="#问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败" class="headerlink" title="问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败"></a>问题：maven项目连接oracle数据库时，由于版权问题，依赖导入失败</h3><h5 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h5><h6 id="1-下载jar包（由于官网下载速度较慢，附百度云连接）"><a href="#1-下载jar包（由于官网下载速度较慢，附百度云连接）" class="headerlink" title="1. 下载jar包（由于官网下载速度较慢，附百度云连接）"></a>1. 下载jar包（由于官网下载速度较慢，附百度云连接）</h6><p>链接:<a href="https://pan.baidu.com/s/10DSDi_LyopEiHydr55rYWg" target="_blank" rel="noopener">oracle6.jar</a> 提取码: 8sic</p>
+<h6 id="2-将jar包放在maven仓库，在项目的maven-cmd-line中执行下面的命令。"><a href="#2-将jar包放在maven仓库，在项目的maven-cmd-line中执行下面的命令。" class="headerlink" title="2. 将jar包放在maven仓库，在项目的maven cmd line中执行下面的命令。"></a>2. 将jar包放在maven仓库，在项目的maven cmd line中执行下面的命令。</h6><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">install:install-file -Dfile&#x3D;E:\maven_repository\ojdbc6.jar -DgroupId&#x3D;com.oracle -DartifactId&#x3D;ojdbc6 -Dversion&#x3D;1.0.0 -Dpackaging&#x3D;jar -DgeneratePom&#x3D;true</span><br></pre></td></tr></table></figure>
+<p>如图所示：<br><img src="https://img-blog.csdnimg.cn/20200305195031928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="按顺序操作"></p>
+<h6 id="3-在pom文件中添加依赖"><a href="#3-在pom文件中添加依赖" class="headerlink" title="3.在pom文件中添加依赖"></a>3.在pom文件中添加依赖</h6><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.oracle<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ojdbc6<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    	 <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>至此依赖导入成功。</p>
+]]></content>
+      <categories>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>递归经典例题（赶鸭子）</title>
     <url>/2020/03/04/%E9%80%92%E5%BD%92%E7%BB%8F%E5%85%B8%E4%BE%8B%E9%A2%98%E2%80%94java%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<h3 id="一．-题目分析"><a href="#一．-题目分析" class="headerlink" title="一．    题目分析"></a>一．    题目分析</h3><p><strong>①一个人赶着鸭子去每个村庄卖，每经过一个村子卖去所赶鸭子的一半又一只。这样他经过了七个村子后还剩两只鸭子，问他出发时共赶多少只鸭子？经过每个村子卖出多少只鸭子？</strong></p>
