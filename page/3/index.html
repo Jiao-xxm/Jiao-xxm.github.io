@@ -71,6 +71,90 @@
     
     
     
+    <article id="post-python机器学习--手写算法KNN" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/04/python%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0--%E6%89%8B%E5%86%99%E7%AE%97%E6%B3%95KNN/"
+    >python机器学习--手写算法KNN</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/04/python%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0--%E6%89%8B%E5%86%99%E7%AE%97%E6%B3%95KNN/" class="article-date">
+  <time datetime="2020-03-04T09:30:15.931Z" itemprop="datePublished">2020-03-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h3 id="一．-KNN-算法简介"><a href="#一．-KNN-算法简介" class="headerlink" title="一．    KNN 算法简介"></a>一．    KNN 算法简介</h3><p>K-近邻（（k-Nearest Neighbors））算法可以说是最简单的机器算法。构建模型只需要保存训练数据集即可。想要对新数据点做出预测，算法会在训练数据集中找到最近的数据点，也就是它的“最近邻”。该算法的思想是一个样本与数据集中的k个样本最相似，如果这k个样本中的大多数属于某一个类别，则该样本也属于这个类别。</p>
+<h3 id="二．-算法构造"><a href="#二．-算法构造" class="headerlink" title="二．    算法构造"></a>二．    算法构造</h3><p>   (1) 计算测试数据与各训练数据之间的距离；<br>  (2) 对距离进行升序排列；<br>  (3) 选取距离最小的K个点；<br>  (4) 计算前K个点各自类别的出现频率；<br>  (5) 返回前K个点中出现频率最高的类别作为测试数据的预测分类。</p>
+<h3 id="三-算法细节实现"><a href="#三-算法细节实现" class="headerlink" title="三.    算法细节实现"></a>三.    算法细节实现</h3><h5 id="1-生成数据集（加载鸢尾花数据集）"><a href="#1-生成数据集（加载鸢尾花数据集）" class="headerlink" title="1.生成数据集（加载鸢尾花数据集）"></a>1.生成数据集（加载鸢尾花数据集）</h5><p><img src="https://img-blog.csdnimg.cn/20191012210532421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>以下是生成的数据及类别数据<br><img src="https://img-blog.csdnimg.cn/20191012210620834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191012210647969.png" alt="在这里插入图片描述"></p>
+<h5 id="2．获取训练集测试集"><a href="#2．获取训练集测试集" class="headerlink" title="2．获取训练集测试集"></a>2．获取训练集测试集</h5><p><img src="https://img-blog.csdnimg.cn/20191012210725986.png" alt="在这里插入图片描述"></p>
+<h5 id="3-构建模型（绘制训练集散点图）"><a href="#3-构建模型（绘制训练集散点图）" class="headerlink" title="3 .构建模型（绘制训练集散点图）"></a>3 .构建模型（绘制训练集散点图）</h5><p><img src="https://img-blog.csdnimg.cn/2019101221082250.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="4-KNN-算法处理过程"><a href="#4-KNN-算法处理过程" class="headerlink" title="4.KNN 算法处理过程"></a>4.KNN 算法处理过程</h5><h6 id="（1）-新增一个点"><a href="#（1）-新增一个点" class="headerlink" title="（1）.新增一个点"></a>（1）.新增一个点</h6><p>绘制新增点后的散点图<br><img src="https://img-blog.csdnimg.cn/20191012210916870.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>图中黑色的点是所需预测的数，利用距离得出离他最近的点的类别以此来进行分类<br>以下是算法及注释<br><img src="https://img-blog.csdnimg.cn/20191012211103277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="5-使用测试集数据进行算法精度评估"><a href="#5-使用测试集数据进行算法精度评估" class="headerlink" title="5.使用测试集数据进行算法精度评估"></a>5.使用测试集数据进行算法精度评估</h5><p><img src="https://img-blog.csdnimg.cn/20191012211138895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzUzOTQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>即将测试集的各个点代用算法距离公式，实现分类决策</p>
+<h3 id="四-算法优劣"><a href="#四-算法优劣" class="headerlink" title="四.算法优劣"></a>四.算法优劣</h3><p> 优点：<br>    (1) 精度高；<br>    (2) 对异常值不敏感。<br> 缺点：<br>    (1) 计算复杂度高；<br>    (2) 空间复杂度高。<br> 适用数据范围：<br>    数值型和标称型</p>
+<h3 id="五．经验总结"><a href="#五．经验总结" class="headerlink" title="五．经验总结"></a>五．经验总结</h3><p>由于不熟悉numpy 和matplotlib的函数，在相关的功能实现上费了很大功夫，但也学会了相关的知识。在手写KNN 算法的基础上进一步理解了KNN算法的思想。</p>
+<p>附源碼：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">test_num = <span class="number">75</span>  <span class="comment"># 测试数据个数</span></span><br><span class="line"><span class="comment"># 源数据的产生(加载sklearn鸢尾花数据集)</span></span><br><span class="line">datas = load_iris()</span><br><span class="line"><span class="comment"># 使用切片获取150组鸢尾花数据(datas['data']为data key 值对应数据，即鸢尾花花瓣花萼数据)</span></span><br><span class="line">raw_data_x = datas[<span class="string">'data'</span>][<span class="number">0</span>:<span class="number">150</span>]</span><br><span class="line"><span class="comment"># 表示鸢尾花的类别（K-NN算法处理基于监督学习的分类问题）</span></span><br><span class="line"><span class="comment"># 0表示setosa类 ，1 表示versicolor类 ，2表示virginica 类</span></span><br><span class="line">raw_data_y = datas[<span class="string">'target'</span>][<span class="number">0</span>:<span class="number">150</span>]</span><br><span class="line"><span class="comment"># 产生训练集（源数据的百分之50）</span></span><br><span class="line">x_Train = raw_data_x[<span class="number">0</span>:<span class="number">150</span>:<span class="number">2</span>]</span><br><span class="line">y_Train = raw_data_y[<span class="number">0</span>:<span class="number">150</span>:<span class="number">2</span>]</span><br><span class="line"><span class="comment"># 产生测试集（源数据的百分之50）</span></span><br><span class="line">x_Test = raw_data_x[<span class="number">1</span>:<span class="number">150</span>:<span class="number">2</span>]</span><br><span class="line">y_Test = raw_data_y[<span class="number">1</span>:<span class="number">150</span>:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">print(raw_data_x)</span><br><span class="line">print(raw_data_y)</span><br><span class="line"></span><br><span class="line">plt.scatter(x_Train[y_Train == <span class="number">0</span>, <span class="number">0</span>], x_Train[y_Train == <span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'b'</span>, label=<span class="string">"feature 0"</span>)</span><br><span class="line">plt.scatter(x_Train[y_Train == <span class="number">1</span>, <span class="number">0</span>], x_Train[y_Train == <span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">"feature 1"</span>)</span><br><span class="line">plt.scatter(x_Train[y_Train == <span class="number">2</span>, <span class="number">0</span>], x_Train[y_Train == <span class="number">2</span>, <span class="number">1</span>], color=<span class="string">'yellow'</span>, label=<span class="string">"feature 2"</span>)</span><br><span class="line">plt.title(<span class="string">"train-data-view"</span>)</span><br><span class="line">plt.xlabel(<span class="string">"x axis"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"y axis"</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加一个新的点</span></span><br><span class="line">x = np.array([<span class="number">4.0915321615</span>, <span class="number">3.4651321653</span>, <span class="number">1.48654954531</span>, <span class="number">0.46365316316</span>])</span><br><span class="line"><span class="comment"># 绘制新增点的数据散点图并判断其是0 or 1  or  2</span></span><br><span class="line">plt.scatter(x_Train[y_Train == <span class="number">0</span>, <span class="number">0</span>], x_Train[y_Train == <span class="number">0</span>, <span class="number">1</span>], color=<span class="string">'b'</span>, label=<span class="string">"feature 0"</span>)</span><br><span class="line">plt.scatter(x_Train[y_Train == <span class="number">1</span>, <span class="number">0</span>], x_Train[y_Train == <span class="number">1</span>, <span class="number">1</span>], color=<span class="string">'r'</span>, label=<span class="string">"feature 1"</span>)</span><br><span class="line">plt.scatter(x_Train[y_Train == <span class="number">2</span>, <span class="number">0</span>], x_Train[y_Train == <span class="number">2</span>, <span class="number">1</span>], color=<span class="string">'yellow'</span>, label=<span class="string">"feature 2"</span>)</span><br><span class="line">plt.scatter(x[<span class="number">0</span>], x[<span class="number">1</span>], color=<span class="string">'black'</span>, label=<span class="string">"symbol ?"</span>)  <span class="comment"># 将新增点绘制成黑色</span></span><br><span class="line">plt.title(<span class="string">"k-NN (one point view)"</span>)</span><br><span class="line">plt.xlabel(<span class="string">"x axis"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"y axis"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#新点knn</span></span><br><span class="line">distances = []</span><br><span class="line"><span class="keyword">for</span> X_train <span class="keyword">in</span> x_Train:</span><br><span class="line"></span><br><span class="line">    d = sqrt(np.sum((X_train - x) ** <span class="number">2</span>))</span><br><span class="line">    distances.append(d)</span><br><span class="line"></span><br><span class="line">nearest = np.argsort(distances)</span><br><span class="line">k = int(input(<span class="string">"请输入k值  "</span>))</span><br><span class="line">topK_y = [y_Train[i] <span class="keyword">for</span> i <span class="keyword">in</span> nearest[:k]]</span><br><span class="line">print(<span class="string">"KNN 计算距离列表"</span>+str(topK_y))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">votes = Counter(topK_y)</span><br><span class="line">predict_y = votes.most_common(<span class="number">1</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">print(<span class="string">"新增点预测数值为："</span>+str(predict_y))</span><br><span class="line"><span class="keyword">if</span> predict_y==<span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"新增点预测结果为：setosa"</span>)</span><br><span class="line"><span class="keyword">elif</span> predict_y==<span class="number">1</span>:</span><br><span class="line">    print(<span class="string">"新增点预测结果为：versicolor"</span>)</span><br><span class="line"><span class="keyword">elif</span> predict_y==<span class="number">2</span>:</span><br><span class="line">    print(<span class="string">"新增点预测结果为：virginica"</span>)</span><br><span class="line">counter = <span class="number">0</span></span><br><span class="line">pre = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> select <span class="keyword">in</span> x_Test:</span><br><span class="line">    Distance = []</span><br><span class="line">    <span class="keyword">for</span> x_pre <span class="keyword">in</span> x_Train:</span><br><span class="line">        d_t = sqrt(np.sum((x_pre-select) ** <span class="number">2</span>))</span><br><span class="line">        Distance.append(d_t)</span><br><span class="line"></span><br><span class="line">    near = np.argsort(Distance)</span><br><span class="line">    topK_y = [y_Train[i] <span class="keyword">for</span> i <span class="keyword">in</span> near[:k]]</span><br><span class="line">    votes = Counter(topK_y)</span><br><span class="line">    result = votes.most_common(<span class="number">1</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> y_Test[pre] == result:</span><br><span class="line">        counter = counter + <span class="number">1</span></span><br><span class="line">        pre = pre + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pre = pre + <span class="number">1</span></span><br><span class="line">score = counter / test_num</span><br><span class="line">print(<span class="string">"测试精度为"</span>+str(score))  <span class="comment">#输出测试精度</span></span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-C语言实现最大公约数算法时间性能比较" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
